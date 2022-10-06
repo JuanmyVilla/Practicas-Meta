@@ -1,4 +1,0 @@
-archivos=archivos1.txt archivos2.txt
-dimension=10
-rango_inferior=-100
-rango_superior=100
