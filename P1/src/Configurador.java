@@ -6,26 +6,28 @@ import java.util.ArrayList;
 
 public class Configurador {
 
-//    private ArrayList<String> archivos;
-//    private ArrayList<String> algoritmos;
-//    private ArrayList<Long> semillas;
-//    private int numerocromosomas;
-//    private int cromosomasaleatorios;
-//    private float probabilidadmutacion;
-//    private float probabilidadcruce;
-//    private int numevaluaciones;
-//    private int numiteraciones;
-//    private int busquedalocal;
+    private ArrayList<String> funcion;
+    private ArrayList<Integer> algoritmos;
+
+    private ArrayList<Long> semillas;
+    private ArrayList<Float> minimos;
+    private ArrayList<Float> maximos;
     private int dimension;
-    private int rango_inferior;
-    private int rango_superior;
+    private int iteraciones;
+
+    private float probabilidad;
+
+    private float porcentajeAleatorio;
 
 
 
     public Configurador(String ruta) {
-//        archivos = new ArrayList<>();
-//        algoritmos = new ArrayList<>();
-//        semillas = new ArrayList<>();
+        funcion = new ArrayList<>();
+        algoritmos=new ArrayList<>();
+        minimos=new ArrayList<>();
+        maximos=new ArrayList<>();
+        semillas=new ArrayList<>();
+
 
         String linea;
         FileReader f = null;
@@ -38,30 +40,45 @@ public class Configurador {
                     case "dimension":
                         dimension = Integer.parseInt(split[1]);
                         break;
-                    case "rango_inferior":
-                        rango_inferior = Integer.parseInt(split[1]);
+                    case "iteraciones":
+                        iteraciones = Integer.parseInt(split[1]);
                         break;
-                    case "rango_superior":
-                        rango_superior = Integer.parseInt(split[1]);
+                    case "probabilidad":
+                        probabilidad = Float.parseFloat(split[1]);
                         break;
-//                    case "archivos":
-//                        String[] _archivos = split[1].split(",");
-//                        for (int i = 0; i < _archivos.length; i++) {
-//                            archivos.add(_archivos[i]);
-//                        }
-//                        break;
-//                    case "algoritmos":
-//                        String[] _algoritmos = split[1].split(",");
-//                        for (int i = 0; i < _algoritmos.length; i++) {
-//                            algoritmos.add(_algoritmos[i]);
-//                        }
-//                        break;
-//                    case "semillas":
-//                        String[] _semillas = split[1].split(",");
-//                        for (int i = 0; i < _semillas.length; i++) {
-//                            semillas.add(Long.parseLong(_semillas[i]));
-//                        }
-//                        break;
+                    case "porcentajealeatorio":
+                        porcentajeAleatorio = Float.parseFloat(split[1]);
+                        break;
+                    case "funcion":
+                        String[] _funcion = split[1].split(",");
+                        for (int i = 0; i < _funcion.length; i++) {
+                            funcion.add(_funcion[i]);
+                        }
+                        break;
+                    case "minimo":
+                        String[] _minimo = split[1].split(",");
+                        for (int i = 0; i < _minimo.length; i++) {
+                            minimos.add(Float.valueOf(_minimo[i]));
+                        }
+                        break;
+                    case "maximo":
+                        String[] _maximo = split[1].split(",");
+                        for (int i = 0; i < _maximo.length; i++) {
+                            maximos.add(Float.valueOf(_maximo[i]));
+                        }
+                        break;
+                    case "semilla":
+                        String[] _semillas = split[1].split(",");
+                        for (int i = 0; i < _semillas.length; i++) {
+                            semillas.add(Long.parseLong(_semillas[i]));
+                        }
+                        break;
+                    case "algoritmos":
+                        String[] _algoritmos = split[1].split(",");
+                        for (int i = 0; i < _algoritmos.length; i++) {
+                            algoritmos.add(Integer.valueOf(_algoritmos[i]));
+                        }
+                        break;
 //                    case "numerocromosomas":
 //                        numerocromosomas = Integer.parseInt(split[1]);
 //                        break;
@@ -91,6 +108,46 @@ public class Configurador {
         }
     }
 
+    public ArrayList<String> getFuncion() {
+        return funcion;
+    }
+
+    public void setFuncion(ArrayList<String> funcion) {
+        this.funcion = funcion;
+    }
+
+    public ArrayList<Integer> getAlgoritmos() {
+        return algoritmos;
+    }
+
+    public void setAlgoritmos(ArrayList<Integer> algoritmos) {
+        this.algoritmos = algoritmos;
+    }
+
+    public ArrayList<Long> getSemillas() {
+        return semillas;
+    }
+
+    public void setSemillas(ArrayList<Long> semillas) {
+        this.semillas = semillas;
+    }
+
+    public ArrayList<Float> getMinimos() {
+        return minimos;
+    }
+
+    public void setMinimos(ArrayList<Float> minimos) {
+        this.minimos = minimos;
+    }
+
+    public ArrayList<Float> getMaximos() {
+        return maximos;
+    }
+
+    public void setMaximos(ArrayList<Float> maximos) {
+        this.maximos = maximos;
+    }
+
     public int getDimension() {
         return dimension;
     }
@@ -99,19 +156,28 @@ public class Configurador {
         this.dimension = dimension;
     }
 
-    public int getRango_inferior() {
-        return rango_inferior;
+    public int getIteraciones() {
+        return iteraciones;
     }
 
-    public void setRango_inferior(int rango_inferior) {
-        this.rango_inferior = rango_inferior;
+    public void setIteraciones(int iteraciones) {
+        this.iteraciones = iteraciones;
     }
 
-    public int getRango_superior() {
-        return rango_superior;
+    public float getProbabilidad() {
+        return probabilidad;
     }
 
-    public void setRango_superior(int rango_superior) {
-        this.rango_superior = rango_superior;
+    public void setProbabilidad(float probabilidad) {
+        this.probabilidad = probabilidad;
     }
+
+    public float getPorcentajeAleatorio() {
+        return porcentajeAleatorio;
+    }
+
+    public void setPorcentajeAleatorio(float porcentajeAleatorio) {
+        this.porcentajeAleatorio = porcentajeAleatorio;
+    }
+
 }

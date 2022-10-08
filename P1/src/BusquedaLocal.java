@@ -92,16 +92,13 @@ public class BusquedaLocal {
                 coste=eva.trid(solucion);
                 break;
             case "rotatedHH":
-                coste=eva.rotatedHH(solucion);
+                coste=eva.rotated(solucion);
                 break;
             case "rosenbrock":
                 coste=eva.rosenbrock(solucion);
                 break;
             case "dixon":
                 coste=eva.dixon(solucion);
-                break;
-            case "rotatedHE":
-                coste=eva.rotatedHE(solucion);
                 break;
             case "schewefel":
                 coste=eva.schewefel(solucion);
