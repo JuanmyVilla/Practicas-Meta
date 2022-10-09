@@ -7,7 +7,7 @@ public class BusquedaLocal {
         rand.Set_random(semilla);
     }
 
-    void busquedalocal(int iteracion,double probabilidad,float porcentajeAleatorio,int k,int dimension,int valorMin,int valorMax,String funcion){
+    void busquedalocal(int iteracion, double probabilidad, float porcentajeAleatorio, int k, int dimension, Float valorMin, Float valorMax, String funcion){
         double [] mejorSolucion = new double[dimension];
         double mejorCoste=0.0;
         int it=0;
@@ -17,7 +17,7 @@ public class BusquedaLocal {
         mejorCoste=evaluacion(mejorSolucion,funcion);
 
         while(it<iteracion && mejora){
-            if(k==-1){
+            if(k==0){
                 k= rand.Randint(4,10);
             }
             double [][] vecinos = new double[k][dimension];
@@ -44,7 +44,8 @@ public class BusquedaLocal {
             }
             it++;
         }
-
+        System.out.println("---------------------Algoritmo----------------------");
+        System.out.println(funcion);
         System.out.println("El mejor coste es " + mejorCoste);
         for (int i = 0; i < dimension; i++) {
             System.out.println(mejorSolucion[i]);
@@ -52,10 +53,10 @@ public class BusquedaLocal {
         System.out.println("La iteracion es " + it);
     }
 
-    double[] solucionInicialAleatoria(double [] sol,int dimension,int valorMin,int valorMax){
+    double[] solucionInicialAleatoria(double [] sol,int dimension,float valorMin,float valorMax){
 
         for (int i = 0; i < dimension; i++) {
-            sol[i]=rand.Randint(valorMin,valorMax);
+            sol[i]=rand.Randfloat(valorMin,valorMax);
         }
         return sol;
     }
