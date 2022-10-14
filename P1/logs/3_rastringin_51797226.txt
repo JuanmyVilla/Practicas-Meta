@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: rastringin
+Coste Final BUSQUEDA LOCAL: 6358.779071320016
+Tiempo de Ejecucion: 1 ms
+Numero de iteraciones 12Solucion BUSQUEDA LOCAL:
+ - solucionBL[0] = 24.1314697265625
+ - solucionBL[1] = 7.205715179443359
+ - solucionBL[2] = -25.053895950317383
+ - solucionBL[3] = -12.01930046081543
+ - solucionBL[4] = 31.934005737304688
+ - solucionBL[5] = 32.84693908691406
+ - solucionBL[6] = 42.7812385559082
+ - solucionBL[7] = -5.136740207672119
+ - solucionBL[8] = 30.052547454833984
+ - solucionBL[9] = -8.057976722717285
+

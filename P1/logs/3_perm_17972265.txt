@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: perm
+Coste Final BUSQUEDA LOCAL: 2.6237558716022297E41
+Tiempo de Ejecucion: 0 ms
+Numero de iteraciones 4Solucion BUSQUEDA LOCAL:
+ - solucionBL[0] = -0.8830373287200928
+ - solucionBL[1] = 79.06564331054688
+ - solucionBL[2] = 78.14083099365234
+ - solucionBL[3] = -12.95203685760498
+ - solucionBL[4] = -22.58747673034668
+ - solucionBL[5] = -30.071794509887695
+ - solucionBL[6] = 39.972450256347656
+ - solucionBL[7] = -82.98182678222656
+ - solucionBL[8] = 58.18928146362305
+ - solucionBL[9] = 3.983577013015747
+

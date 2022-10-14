@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: griewank
+Coste Final BUSQUEDA LOCAL: 563.4390621623769
+Tiempo de Ejecucion: 0 ms
+Numero de iteraciones 4Solucion BUSQUEDA LOCAL:
+ - solucionBL[0] = -397.34521484375
+ - solucionBL[1] = 388.2515869140625
+ - solucionBL[2] = -62.3258056640625
+ - solucionBL[3] = 81.43590545654297
+ - solucionBL[4] = -706.13623046875
+ - solucionBL[5] = -351.941162109375
+ - solucionBL[6] = 248.9131622314453
+ - solucionBL[7] = 807.9859619140625
+ - solucionBL[8] = 381.78582763671875
+ - solucionBL[9] = 669.0044555664062
+

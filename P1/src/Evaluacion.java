@@ -49,7 +49,7 @@ public class Evaluacion {
     public double trid(double [] solucion){
         double d = solucion.length;
         double sum2 =0;
-        double sum1 = Math.pow(solucion[0]-1,2);
+        double sum1 = Math.pow(solucion[1]-1,2);
 
         for (int ii=1; ii<d; ii++){
             double xi = solucion[ii];
@@ -91,14 +91,19 @@ public class Evaluacion {
         return term1 + sum;
     }
     public double rotated(double [] solucion){
-        double sum1=0.0;
-        int dimension= solucion.length;
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < solucion.length; j++) {
-                sum1+= Math.pow(solucion[j],2);
+        double d = solucion.length;
+        double outer = 1.0;
+
+        for (int i=0; i<d; i++){
+            double inner=0;
+            for (int j=0; j<i; j++){
+                double xj = solucion[j];
+                inner += xj*xj;
             }
+            outer += outer*inner;
         }
-        return sum1;
+
+        return outer;
     }
     public double schewefel(double [] solucion){
         double d = solucion.length;
