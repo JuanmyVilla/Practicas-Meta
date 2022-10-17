@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: dixon
+Coste Final BUSQUEDA TABU: 3.1298269379745575E14
+Tiempo de Ejecucion: 1 ms
+Numero de iteraciones 50Solucion BUSQUEDA TABU:
+ - solucionBT[0] = 914.0077514648438
+ - solucionBT[1] = 453.99835205078125
+ - solucionBT[2] = 697.9203491210938
+ - solucionBT[3] = 801.5369262695312
+ - solucionBT[4] = 327.9383850097656
+ - solucionBT[5] = 953.798095703125
+ - solucionBT[6] = 171.34292602539062
+ - solucionBT[7] = 843.875
+ - solucionBT[8] = 921.1634521484375
+ - solucionBT[9] = 832.1061401367188
+

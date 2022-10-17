@@ -9,13 +9,17 @@ public class BusquedaTabu {
     }
 
 
-    void busquedatabu(int iteracion, double probabilidad, float porcentajeAleatorio, int k, int dimension, Float valorMin, Float valorMax, String funcion, int elementosTabu) {
+    void busquedatabu(int iteracion, double probabilidad, float porcentajeAleatorio, int k, int dimension, Float valorMin, Float valorMax, String funcion, int elementosTabu,int divisiones) {
 
         log.append("INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL\n");
         log.append(" - Funcion: " + funcion + "\n");
         long inicioBL = System.currentTimeMillis();
         double[] mejorSolucion = new double[dimension];
         double mejorCoste = 0.0;
+        double[] solucionAntesdeReinicializar = new double[dimension];
+        double costeAntesdeReinicializar = 0.0;
+        double[] mejorSolucionGlobal = new double[dimension];
+        double mejorCosteGlobal = 0.0;
         double[] mejorSolucionActual = new double[dimension];
         double mejorCosteActual = 0.0;
         double[][] listaTabu = new double[elementosTabu][dimension];
@@ -24,11 +28,14 @@ public class BusquedaTabu {
         int it = 0;
         int itSinMejora = (int) (iteracion * 0.05);
         int it2 = 0;
+        int contTabu = 0;
         double[] solucion = new double[dimension];
         mejorSolucion = solucionInicialAleatoria(solucion, dimension, valorMin, valorMax);
         mejorCoste = evaluacion(mejorSolucion, funcion);
+        mejorCosteGlobal = mejorCoste;
+        mejorSolucionGlobal = mejorSolucion;
 
-        while (it < iteracion && it2 < itSinMejora) {
+        while (it < iteracion) {
             if (k == 0) {
                 k = rand.Randint(4, 10);
             }
@@ -47,36 +54,62 @@ public class BusquedaTabu {
             }
             ordenaVecinos(vecinos, funcion);
             //cuando contamos la no mejora cuando todos los vecinos son tabu?
-            int [] conversor=new int[dimension];
+            int[] conversor = new int[dimension];
             for (int i = 0; i < vecinos.length; i++) {
-                if(estabu(vecinos[i],listaTabu,dimension)==false){
-                    conversionSolMemoriaCortoPlazo(mejorSolucion,vecinos[i],conversor);
-                    if(memoriaCortoplazo(conversor,memoriaCortoPlazo,dimension)==false){
+                if (estabu(vecinos[i], mejorSolucion) == false) {
+                    conversionSolMemoriaCortoPlazo(mejorSolucion, vecinos[i], conversor);
+                    if (memoriaCortoplazo(conversor, memoriaCortoPlazo, dimension) == false) {
                         //actualizar mejor global, mejor del momento y rellenar lista tabu y memorias
+                        mejorSolucionActual = vecinos[i];
+                        mejorCosteActual = evaluacion(mejorSolucionActual, funcion);
+                        listaTabu[contTabu % elementosTabu] = mejorSolucion;
+                        conversionSolMemoriaCortoPlazo(mejorSolucion, mejorSolucionActual, memoriaCortoPlazo[contTabu % elementosTabu]);
+                        memoriaLargoPlazo(valorMin, valorMax, memoriaLargoPlazo, divisiones, mejorSolucionActual);
+                        contTabu++;
                     }
                 }
             }
 
-//            int nuevomej;
-//            nuevomej = nuevoMejor(vecinos, funcion);
-//
-//            if (nuevomej == -1) {
-//                it2++;
-//            } else {
-//                mejorSolucion = vecinos[nuevomej];
-//                mejorCoste = evaluacion(mejorSolucion, funcion);
-//                it2 = 0;
-//            }
+            if (mejorCosteActual > mejorCoste) {
+                it2++;
+                mejorCoste = mejorCosteActual;
+                mejorSolucion = mejorSolucionActual;
+            } else {
+                it2 = 0;
+                mejorCoste = mejorCosteActual;
+                mejorSolucion = mejorSolucionActual;
+
+            }
+
+
+            if (it2 == itSinMejora) {
+//                if (rand.Randfloat(0, 1) < 0.5) {
+//                    //diversificacion
+//                } else {
+                    costeAntesdeReinicializar = mejorCoste;
+                    solucionAntesdeReinicializar = mejorSolucion;
+                    intensificacion(memoriaLargoPlazo,mejorSolucion,valorMin,valorMax,divisiones);
+                    //intensificacion
+                    limpieza(memoriaCortoPlazo,memoriaLargoPlazo,listaTabu);
+                    it2=0;
+
+              //  }
+            }
+            if (mejorCoste < mejorCosteGlobal) {
+                mejorCosteGlobal = mejorCoste;
+                mejorSolucionGlobal = mejorSolucion;
+            }
+            
             it++;
         }
         long finalBL = System.currentTimeMillis();
-        log.append("Coste Final BUSQUEDA LOCAL: " + mejorCoste + "\n");
+        log.append("Coste Final BUSQUEDA TABU: " + mejorCosteGlobal + "\n");
 
         log.append("Tiempo de Ejecucion: " + (finalBL - inicioBL) + " ms\n");
-        log.append("Numero de iteraciones " + it);
-        log.append("Solucion BUSQUEDA LOCAL:" + "\n");
+        log.append("Numero de iteraciones " + it + "\n");
+        log.append("Solucion BUSQUEDA TABU:" + "\n");
         for (int s = 0; s < mejorSolucion.length; s++) {
-            log.append(" - solucionBL[" + s + "] = " + mejorSolucion[s] + "\n");
+            log.append(" - solucionBT[" + s + "] = " + mejorSolucionGlobal[s] + "\n");
         }
     }
 
@@ -106,34 +139,32 @@ public class BusquedaTabu {
 
     }
 
-    boolean estabu(double[] vecinos, double[][] listaTabu, int dimension) {
+    boolean estabu(double[] vecinos, double[] mejorSol) {
 
         boolean tabu = false;
         //primera comprobacion
-        for (int i = 0; i < dimension; i++) {
-//los +-1% son respecto a la solucion de partida o respecto a las de la lista tabu lo hare suponiendo que es con los de la lista tabu
-            for (int k = 0; k < listaTabu.length; k++) {
-                for (int l = 0; l < dimension; l++) {
-                    if (vecinos[i] * 1.01 == listaTabu[k][l] || vecinos[i] * 0.99 == listaTabu[k][l]) {
-                        tabu = true;
-                    } else {
-                        return false;
-                    }
+        for (int i = 0; i < mejorSol.length; i++) {
+            for (int k = 0; k < mejorSol.length; k++) {
+                if (vecinos[i] * 1.01 >= mejorSol[k] && vecinos[i] * 0.99 <= mejorSol[k]) {
+                    tabu = true;
+                } else {
+                    return false;
                 }
+
             }
 
         }
         return tabu;
     }
 
-    boolean memoriaCortoplazo (int []vecinos, int[][] memoria,int dimension){
-        boolean tabu=false;
+    boolean memoriaCortoplazo(int[] vecinos, int[][] memoria, int dimension) {
+        boolean tabu = false;
 
         for (int i = 0; i < memoria.length; i++) {
             for (int j = 0; j < dimension; j++) {
-                if(vecinos[j]==memoria[i][j]){//quizas no funciones porque mira todos iguales y solo deba mirar los 1
-                    tabu=true;
-                }else{
+                if (vecinos[j] == memoria[i][j]) {//quizas no funciones porque mira todos iguales y solo deba mirar los 1
+                    tabu = true;
+                } else {
                     return false;
                 }
             }
@@ -142,12 +173,25 @@ public class BusquedaTabu {
         return tabu;
     }
 
-    void conversionSolMemoriaCortoPlazo(double []solucion,double[] vecino,int []conversion){
+    void memoriaLargoPlazo(float valormin, float valormax, int[][] memoriaLplazo, int divisiones, double[] solucion) {
+        float corte = (valormax - valormin) / divisiones;
         for (int i = 0; i < solucion.length; i++) {
-            if(solucion[i]==vecino[i]){
-                conversion[i]=0;
-            }else{
-                conversion[i]=1;
+            for (int j = 0; j < divisiones; j++) {
+                if (solucion[i] < valormin + (j + 1) * corte && solucion[i] > valormin + (j) * corte) {
+                    memoriaLplazo[i][j]++;
+                }
+            }
+        }
+
+    }
+
+
+    void conversionSolMemoriaCortoPlazo(double[] solucion, double[] vecino, int[] conversion) {
+        for (int i = 0; i < solucion.length; i++) {
+            if (solucion[i] == vecino[i]) {
+                conversion[i] = 0;
+            } else {
+                conversion[i] = 1;
             }
         }
     }
@@ -168,6 +212,41 @@ public class BusquedaTabu {
             }
         }
         return posicion;
+    }
+
+
+    void intensificacion(int[][] memoria, double[] solucion,float valormin, float valormax,int divisiones) {
+        float corte = (valormax - valormin) / divisiones;
+        int max= 0;
+        int posicion=0;
+        for (int i = 0; i < memoria.length; i++) {
+            for (int j = 0; j < memoria.length; j++) {
+                for (int k = 0; k < memoria.length; k++) {
+                    if(memoria[i][j]>max){
+                       max=memoria[i][j];
+                       posicion=j;
+                    }
+                }
+            }
+            double aux = rand.Randfloat(posicion*corte+valormin,(posicion+1)*corte+valormin);
+            solucion[i]=aux;
+        }
+    }
+
+    void limpieza(int [][] memoriaCP,int [][] memoriaLP,double [][] listaTabu){
+
+        for (int i = 0; i < memoriaCP.length; i++) {
+            for (int j = 0; j < memoriaLP.length; j++) {
+                memoriaCP[i][j]=0;
+                listaTabu[i][j]=0;
+            }
+        }
+        for (int i = 0; i < memoriaLP.length; i++) {
+            for (int j = 0; j < memoriaLP.length; j++) {
+                memoriaLP[i][j]=0;
+            }
+        }
+
     }
 
     double evaluacion(double[] solucion, String funcion) {

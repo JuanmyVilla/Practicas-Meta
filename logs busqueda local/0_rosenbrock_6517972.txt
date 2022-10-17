@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: rosenbrock
+Coste Final BUSQUEDA LOCAL: 3.0192548458248506E9
+Tiempo de Ejecucion: 4 ms
+Numero de iteraciones 454Solucion BUSQUEDA LOCAL:
+ - solucionBL[0] = 45.62917709350586
+ - solucionBL[1] = 41.66563415527344
+ - solucionBL[2] = 47.170780181884766
+ - solucionBL[3] = 36.1395149230957
+ - solucionBL[4] = 40.43729019165039
+ - solucionBL[5] = 46.56849670410156
+ - solucionBL[6] = 50.17711639404297
+ - solucionBL[7] = 45.165523529052734
+ - solucionBL[8] = 145.850341796875
+ - solucionBL[9] = 21538.736328125
+

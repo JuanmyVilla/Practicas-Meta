@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: schewefel
+Coste Final BUSQUEDA TABU: 3185.2567921285236
+Tiempo de Ejecucion: 52 ms
+Numero de iteraciones 1000Solucion BUSQUEDA TABU:
+ - solucionBT[0] = 4218.251953125
+ - solucionBT[1] = 36.3486328125
+ - solucionBT[2] = 2253.8212890625
+ - solucionBT[3] = 3195.7900390625
+ - solucionBT[4] = -1109.651123046875
+ - solucionBT[5] = 4579.982421875
+ - solucionBT[6] = -2533.24609375
+ - solucionBT[7] = 3580.681640625
+ - solucionBT[8] = 4283.3046875
+ - solucionBT[9] = 3473.6923828125
+

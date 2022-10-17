@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: rastringin
+Coste Final BUSQUEDA TABU: 7687.7985517061115
+Tiempo de Ejecucion: 8 ms
+Numero de iteraciones 1000Solucion BUSQUEDA TABU:
+ - solucionBT[0] = -0.5001373291015625
+ - solucionBT[1] = 40.41835403442383
+ - solucionBT[2] = 42.53139877319336
+ - solucionBT[3] = -6.336849212646484
+ - solucionBT[4] = -11.843635559082031
+ - solucionBT[5] = -14.030181884765625
+ - solucionBT[6] = 22.411640167236328
+ - solucionBT[7] = -45.978546142578125
+ - solucionBT[8] = 33.62399673461914
+ - solucionBT[9] = 2.1109161376953125
+

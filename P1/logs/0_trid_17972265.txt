@@ -1,16 +1,17 @@
 INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
  - Funcion: trid
-Coste Final BUSQUEDA LOCAL: 191902.49097454827
-Tiempo de Ejecucion: 0 ms
-Numero de iteraciones 18Solucion BUSQUEDA LOCAL:
- - solucionBL[0] = -470.9203186035156
- - solucionBL[1] = -98.90847778320312
- - solucionBL[2] = -88.34090423583984
- - solucionBL[3] = -433.8852844238281
- - solucionBL[4] = -635.3853759765625
- - solucionBL[5] = -584.3976440429688
- - solucionBL[6] = -410.212646484375
- - solucionBL[7] = -511.5631408691406
- - solucionBL[8] = -208.80679321289062
- - solucionBL[9] = -346.4122314453125
+Coste Final BUSQUEDA TABU: -34845.477233769896
+Tiempo de Ejecucion: 5 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = -539.21337890625
+ - solucionBT[1] = -194.6107177734375
+ - solucionBT[2] = -66.43086242675781
+ - solucionBT[3] = -24.23815155029297
+ - solucionBT[4] = -35.33190155029297
+ - solucionBT[5] = -69.34403991699219
+ - solucionBT[6] = -68.21138763427734
+ - solucionBT[7] = -94.58612060546875
+ - solucionBT[8] = -61.57128143310547
+ - solucionBT[9] = -32.33277893066406
 

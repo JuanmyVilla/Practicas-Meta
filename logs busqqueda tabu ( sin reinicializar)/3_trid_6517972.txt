@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: trid
+Coste Final BUSQUEDA TABU: 1084780.835551042
+Tiempo de Ejecucion: 1 ms
+Numero de iteraciones 1000Solucion BUSQUEDA TABU:
+ - solucionBT[0] = -72.38287353515625
+ - solucionBT[1] = -493.20074462890625
+ - solucionBT[2] = -270.06024169921875
+ - solucionBT[3] = -175.271484375
+ - solucionBT[4] = -608.520751953125
+ - solucionBT[5] = -35.98260498046875
+ - solucionBT[6] = -751.7747192382812
+ - solucionBT[7] = -136.54052734375
+ - solucionBT[8] = -65.8367919921875
+ - solucionBT[9] = -147.30670166015625
+

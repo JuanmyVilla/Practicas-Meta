@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: perm
+Coste Final BUSQUEDA TABU: 9.037638365015877E41
+Tiempo de Ejecucion: 125 ms
+Numero de iteraciones 1000Solucion BUSQUEDA TABU:
+ - solucionBT[0] = -39.734519958496094
+ - solucionBT[1] = 39.36578369140625
+ - solucionBT[2] = -6.1946563720703125
+ - solucionBT[3] = 8.540054321289062
+ - solucionBT[4] = -93.00775146484375
+ - solucionBT[5] = -34.90703582763672
+ - solucionBT[6] = 27.627517700195312
+ - solucionBT[7] = 79.92845153808594
+ - solucionBT[8] = 30.923049926757812
+ - solucionBT[9] = 66.1822509765625
+

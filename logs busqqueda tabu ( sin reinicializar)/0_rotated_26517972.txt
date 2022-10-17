@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: rotated
+Coste Final BUSQUEDA TABU: 8.291802407249787E87
+Tiempo de Ejecucion: 0 ms
+Numero de iteraciones 52Solucion BUSQUEDA TABU:
+ - solucionBT[0] = -45171.0859375
+ - solucionBT[1] = -18441.515625
+ - solucionBT[2] = -33837.296875
+ - solucionBT[3] = -28858.14453125
+ - solucionBT[4] = -63173.1796875
+ - solucionBT[5] = -43539.78515625
+ - solucionBT[6] = -22408.109375
+ - solucionBT[7] = -4734.57421875
+ - solucionBT[8] = -21294.48046875
+ - solucionBT[9] = -9379.69140625
+

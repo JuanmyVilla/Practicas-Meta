@@ -1,16 +1,17 @@
 INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
  - Funcion: perm
-Coste Final BUSQUEDA LOCAL: 7.455675552669626E36
-Tiempo de Ejecucion: 4 ms
-Numero de iteraciones 32Solucion BUSQUEDA LOCAL:
- - solucionBL[0] = -31.639421463012695
- - solucionBL[1] = 42.840572357177734
- - solucionBL[2] = -5.575001239776611
- - solucionBL[3] = 8.879108428955078
- - solucionBL[4] = -49.36872100830078
- - solucionBL[5] = -37.690155029296875
- - solucionBL[6] = 28.90441131591797
- - solucionBL[7] = 37.659751892089844
- - solucionBL[8] = 45.16976547241211
- - solucionBL[9] = 41.526084899902344
+Coste Final BUSQUEDA TABU: 9.037638365015877E41
+Tiempo de Ejecucion: 147 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = -39.734519958496094
+ - solucionBT[1] = 39.36578369140625
+ - solucionBT[2] = -6.1946563720703125
+ - solucionBT[3] = 8.540054321289062
+ - solucionBT[4] = -93.00775146484375
+ - solucionBT[5] = -34.90703582763672
+ - solucionBT[6] = 27.627517700195312
+ - solucionBT[7] = 79.92845153808594
+ - solucionBT[8] = 30.923049926757812
+ - solucionBT[9] = 66.1822509765625
 

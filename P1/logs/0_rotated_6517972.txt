@@ -1,16 +1,17 @@
 INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
  - Funcion: rotated
-Coste Final BUSQUEDA LOCAL: 1.0001805387195473
-Tiempo de Ejecucion: 9 ms
-Numero de iteraciones 1000Solucion BUSQUEDA LOCAL:
- - solucionBL[0] = -0.001824853359721601
- - solucionBL[1] = -0.0014310915721580386
- - solucionBL[2] = -0.0014682166511192918
- - solucionBL[3] = -0.0019270229386165738
- - solucionBL[4] = -0.0022304882295429707
- - solucionBL[5] = -0.002211696468293667
- - solucionBL[6] = -0.002254451857879758
- - solucionBL[7] = -0.003107770113274455
- - solucionBL[8] = -0.004218325950205326
- - solucionBL[9] = -1596.1807861328125
+Coste Final BUSQUEDA TABU: 5.390515958896814E63
+Tiempo de Ejecucion: 10 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = 1278.314208984375
+ - solucionBT[1] = 793.5380859375
+ - solucionBT[2] = 1841.19091796875
+ - solucionBT[3] = -1431.4500732421875
+ - solucionBT[4] = -3378.93359375
+ - solucionBT[5] = 693.9296875
+ - solucionBT[6] = -4743.212890625
+ - solucionBT[7] = 1723.22119140625
+ - solucionBT[8] = -1408.76171875
+ - solucionBT[9] = -2089.095458984375
 

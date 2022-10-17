@@ -6,4 +6,4 @@ funcion=ackley,griewank,rastringin,schewefel,perm,rotated,rosenbrock,michalewicz
 minimo=-32768,-1000,-51.12,-5000,-100,-65536,-5,0,-1000,-100
 maximo=32768,1000,51.12,5000,100,2048,65536,10,6.2831,1000,100
 semilla=26517972,6517972,51797226,17972265,79722651
-algoritmos=3,0
+algoritmos=0

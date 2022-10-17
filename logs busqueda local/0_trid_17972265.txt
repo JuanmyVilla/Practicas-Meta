@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: trid
+Coste Final BUSQUEDA LOCAL: 191902.49097454827
+Tiempo de Ejecucion: 0 ms
+Numero de iteraciones 18Solucion BUSQUEDA LOCAL:
+ - solucionBL[0] = -470.9203186035156
+ - solucionBL[1] = -98.90847778320312
+ - solucionBL[2] = -88.34090423583984
+ - solucionBL[3] = -433.8852844238281
+ - solucionBL[4] = -635.3853759765625
+ - solucionBL[5] = -584.3976440429688
+ - solucionBL[6] = -410.212646484375
+ - solucionBL[7] = -511.5631408691406
+ - solucionBL[8] = -208.80679321289062
+ - solucionBL[9] = -346.4122314453125
+

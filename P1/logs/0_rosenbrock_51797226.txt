@@ -1,16 +1,17 @@
 INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
  - Funcion: rosenbrock
-Coste Final BUSQUEDA LOCAL: 1.2523560224141012E20
-Tiempo de Ejecucion: 0 ms
-Numero de iteraciones 66Solucion BUSQUEDA LOCAL:
- - solucionBL[0] = 18805.84375
- - solucionBL[1] = 22647.626953125
- - solucionBL[2] = 9467.986328125
- - solucionBL[3] = 19811.056640625
- - solucionBL[4] = 18588.966796875
- - solucionBL[5] = 16912.44921875
- - solucionBL[6] = 20202.435546875
- - solucionBL[7] = 21273.4453125
- - solucionBL[8] = 18974.978515625
- - solucionBL[9] = 21263.740234375
+Coste Final BUSQUEDA TABU: 1.7948570850723643E21
+Tiempo de Ejecucion: 4 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = 63702.234375
+ - solucionBT[1] = 34862.9765625
+ - solucionBT[2] = 801.8104858398438
+ - solucionBT[3] = 5620.8759765625
+ - solucionBT[4] = 272.56134033203125
+ - solucionBT[5] = 3460.28466796875
+ - solucionBT[6] = 5218.6728515625
+ - solucionBT[7] = 6474.27880859375
+ - solucionBT[8] = 5309.75927734375
+ - solucionBT[9] = 6340.544921875
 

@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: griewank
+Coste Final BUSQUEDA TABU: 867.4774480001861
+Tiempo de Ejecucion: 2 ms
+Numero de iteraciones 310Solucion BUSQUEDA TABU:
+ - solucionBT[0] = 573.9947509765625
+ - solucionBT[1] = 144.8526611328125
+ - solucionBT[2] = -510.3205261230469
+ - solucionBT[3] = -295.76123046875
+ - solucionBT[4] = 654.6624145507812
+ - solucionBT[5] = 872.8976440429688
+ - solucionBT[6] = 945.4200439453125
+ - solucionBT[7] = -129.28863525390625
+ - solucionBT[8] = 795.1573486328125
+ - solucionBT[9] = -184.962646484375
+

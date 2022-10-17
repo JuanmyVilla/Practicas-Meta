@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: michalewicz
+Coste Final BUSQUEDA TABU: 0.43844257488790206
+Tiempo de Ejecucion: 54 ms
+Numero de iteraciones 1000Solucion BUSQUEDA TABU:
+ - solucionBT[0] = 0.5360147953033447
+ - solucionBT[1] = 9.874951362609863
+ - solucionBT[2] = 4.425573825836182
+ - solucionBT[3] = 7.678881645202637
+ - solucionBT[4] = 6.243127822875977
+ - solucionBT[5] = 8.34882926940918
+ - solucionBT[6] = 3.9048244953155518
+ - solucionBT[7] = 8.289485931396484
+ - solucionBT[8] = 4.593493461608887
+ - solucionBT[9] = 2.955589532852173
+

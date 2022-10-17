@@ -1,0 +1,16 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: rosenbrock
+Coste Final BUSQUEDA TABU: 4.6383665607572246E21
+Tiempo de Ejecucion: 0 ms
+Numero de iteraciones 50Solucion BUSQUEDA TABU:
+ - solucionBT[0] = 3508.0947265625
+ - solucionBT[1] = 64716.41796875
+ - solucionBT[2] = 29000.65234375
+ - solucionBT[3] = 50323.16015625
+ - solucionBT[4] = 40913.08203125
+ - solucionBT[5] = 54714.0625
+ - solucionBT[6] = 25587.611328125
+ - solucionBT[7] = 54325.1171875
+ - solucionBT[8] = 30101.21484375
+ - solucionBT[9] = 19366.23046875
+
