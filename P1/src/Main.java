@@ -52,9 +52,9 @@ public class Main {
                     bl.busquedalocal(iteraciones, probatilidad, porcentaje, config.getAlgoritmos().get(i), dimension, config.getMinimos().get(j), config.getMaximos().get(j), config.getFuncion().get(j));
                     BusquedaTabu bt= new BusquedaTabu(config.getSemillas().get(k));
                     bt.busquedatabu(iteraciones, probatilidad, porcentaje, config.getAlgoritmos().get(i), dimension, config.getMinimos().get(j), config.getMaximos().get(j), config.getFuncion().get(j),5,10);
-
-                    // System.out.println(bt.getLog());
-                  //  createLog(fichero, bt.getLog());
+                    //createLog(fichero, bl.getLog());
+                     //System.out.println(bt.getLog());
+                    createLog(fichero, bt.getLog());
                 }
             }
 

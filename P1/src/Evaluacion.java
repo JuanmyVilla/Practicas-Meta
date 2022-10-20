@@ -49,7 +49,7 @@ public class Evaluacion {
     public double trid(double [] solucion){
         double d = solucion.length;
         double sum2 =0;
-        double sum1 = Math.pow(solucion[1]-1,2);
+        double sum1 = Math.pow(solucion[0]-1,2);
 
         for (int ii=1; ii<d; ii++){
             double xi = solucion[ii];
@@ -59,6 +59,8 @@ public class Evaluacion {
         }
 
         return sum1 - sum2;
+
+
     }
     public double rosenbrock(double[] solucion) {
         double d = solucion.length;
@@ -105,6 +107,9 @@ public class Evaluacion {
 
         return outer;
     }
+
+
+    //da negativos
     public double schewefel(double [] solucion){
         double d = solucion.length;
 
@@ -115,7 +120,10 @@ public class Evaluacion {
         }
 
         return  418.9829*d - sum;
+
+
     }
+    //no la tiene david
     public double michalewicz(double [] solucion,int m){
         double sum=0.0;
         int dimension= solucion.length;

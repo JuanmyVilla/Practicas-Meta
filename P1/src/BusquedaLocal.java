@@ -33,6 +33,20 @@ public class BusquedaLocal {
                     if (muta < probabilidad) {
                         float inferior = (float) (mejorSolucion[j] * (1 - porcentajeAleatorio));
                         float superior = (float) (mejorSolucion[j] * (1 + porcentajeAleatorio));
+                        if (mejorSolucion[j]<0)  {
+                            //solo para negativos el rango cambia
+                            float aux= inferior;
+                            inferior=superior;
+                            superior=aux;
+                        }
+
+                        if (inferior<valorMin){
+                            inferior=valorMin;
+                        }
+                        if (superior>valorMax){
+                            superior=valorMax;
+
+                        }
                         vecinos[i][j] = rand.Randfloat(inferior, superior);
                     } else {
                         vecinos[i][j] = mejorSolucion[j];
