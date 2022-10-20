@@ -1,0 +1,17 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA TABU
+ - Funcion: griewank
+Coste Final BUSQUEDA TABU: 0.7649089229270972
+Tiempo de Ejecucion: 9 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = -22.116409301757812
+ - solucionBT[1] = 13.362585067749023
+ - solucionBT[2] = 16.198299407958984
+ - solucionBT[3] = 12.604419708251953
+ - solucionBT[4] = 21.29136085510254
+ - solucionBT[5] = 15.091939926147461
+ - solucionBT[6] = 16.766952514648438
+ - solucionBT[7] = 9.0387544631958
+ - solucionBT[8] = -18.74992561340332
+ - solucionBT[9] = 8.492558479309082
+

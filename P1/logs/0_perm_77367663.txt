@@ -1,0 +1,17 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA TABU
+ - Funcion: perm
+Coste Final BUSQUEDA TABU: 14.95193056578453
+Tiempo de Ejecucion: 99 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = -0.02223585918545723
+ - solucionBT[1] = 0.22551673650741577
+ - solucionBT[2] = 0.21297329664230347
+ - solucionBT[3] = 0.21828755736351013
+ - solucionBT[4] = 0.20903638005256653
+ - solucionBT[5] = 0.2083754539489746
+ - solucionBT[6] = 0.939813494682312
+ - solucionBT[7] = 0.218000128865242
+ - solucionBT[8] = -0.016624707728624344
+ - solucionBT[9] = 0.1978914886713028
+

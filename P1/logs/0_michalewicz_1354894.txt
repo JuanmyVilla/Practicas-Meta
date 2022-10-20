@@ -1,0 +1,17 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA TABU
+ - Funcion: michalewicz
+Coste Final BUSQUEDA TABU: -8.317021565290318
+Tiempo de Ejecucion: 48 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = 4.627028465270996
+ - solucionBT[1] = 1.962184190750122
+ - solucionBT[2] = 1.3405405282974243
+ - solucionBT[3] = 1.5382616519927979
+ - solucionBT[4] = 1.8238589763641357
+ - solucionBT[5] = 7.784494876861572
+ - solucionBT[6] = 8.124117851257324
+ - solucionBT[7] = 1.4645576477050781
+ - solucionBT[8] = 1.1913559436798096
+ - solucionBT[9] = 1.1952800750732422
+

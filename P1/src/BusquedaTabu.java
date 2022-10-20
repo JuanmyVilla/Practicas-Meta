@@ -67,6 +67,7 @@ public class BusquedaTabu {
                 }
             }
 
+
             if (mejorCosteActual < mejorCoste) {
                 it2=0;
                 mejorCoste = mejorCosteActual;
@@ -217,7 +218,8 @@ public class BusquedaTabu {
                 if (vecinos[j] == memoria[i][j]) {//quizas no funciones porque mira todos iguales y solo deba mirar los 1
                     tabu = true;
                 } else {
-                    return false;
+                    tabu= false;
+                    break;
                 }
             }
         }

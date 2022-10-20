@@ -1,0 +1,17 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA TABU
+ - Funcion: trid
+Coste Final BUSQUEDA TABU: 10.008517892637691
+Tiempo de Ejecucion: 3 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = -4.6192394802346826E-4
+ - solucionBT[1] = -5.987653858028352E-4
+ - solucionBT[2] = -5.650082603096962E-4
+ - solucionBT[3] = -3.43486201018095E-4
+ - solucionBT[4] = -4.5014542411081493E-4
+ - solucionBT[5] = -3.67522647138685E-4
+ - solucionBT[6] = -3.1353574013337493E-4
+ - solucionBT[7] = -4.1973518091253936E-4
+ - solucionBT[8] = -2.955129893962294E-4
+ - solucionBT[9] = -4.431734560057521E-4
+

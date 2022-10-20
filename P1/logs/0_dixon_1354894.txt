@@ -1,0 +1,17 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA TABU
+ - Funcion: dixon
+Coste Final BUSQUEDA TABU: 0.0029615305550264605
+Tiempo de Ejecucion: 4 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = 1.0107694864273071
+ - solucionBT[1] = 0.5039353370666504
+ - solucionBT[2] = 0.36343422532081604
+ - solucionBT[3] = 0.307634174823761
+ - solucionBT[4] = 0.2791956663131714
+ - solucionBT[5] = 0.26527637243270874
+ - solucionBT[6] = 0.2522858679294586
+ - solucionBT[7] = 0.25328049063682556
+ - solucionBT[8] = 0.2506607472896576
+ - solucionBT[9] = 0.2501179575920105
+
