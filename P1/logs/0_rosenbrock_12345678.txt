@@ -1,0 +1,17 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA TABU
+ - Funcion: rosenbrock
+Coste Final BUSQUEDA TABU: 165195.95987190295
+Tiempo de Ejecucion: 4 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = 4.219192981719971
+ - solucionBT[1] = 4.241015911102295
+ - solucionBT[2] = 3.914936065673828
+ - solucionBT[3] = 3.725844383239746
+ - solucionBT[4] = 4.145057678222656
+ - solucionBT[5] = 3.9820663928985596
+ - solucionBT[6] = 5.0851216316223145
+ - solucionBT[7] = 15.912055969238281
+ - solucionBT[8] = 252.98040771484375
+ - solucionBT[9] = 64002.76953125
+

@@ -1,15 +1,15 @@
-public class BusquedaTabu {
+public class Multiarranque {
     private final Randon rand;
     private StringBuilder log;
 
-    public BusquedaTabu(long semilla) {
+    public Multiarranque(long semilla) {
         rand = new Randon();
         rand.Set_random(semilla);
         log = new StringBuilder();
     }
 
 
-    void busquedatabu(int iteracion, double probabilidad, float porcentajeAleatorio, int k, int dimension, Float valorMin, Float valorMax, String funcion, int elementosTabu, int divisiones) {
+    void multiarranque(int iteracion, double probabilidad, float porcentajeAleatorio, int k, int dimension, Float valorMin, Float valorMax, String funcion, int elementosTabu, int divisiones) {
 
         log.append("INICIO EJECUCION: Algoritmo BUSQUEDA TABU\n");
         log.append(" - Funcion: " + funcion + "\n");
@@ -39,6 +39,7 @@ public class BusquedaTabu {
         mejorSolucionGlobal = mejorSolucion;
         listaTabu[contTabu % elementosTabu] = mejorSolucion;
         contTabu++;
+        int multiarranque=0;
         int contador = 0;
         while (it < iteracion) {
             if (k == 0) {
@@ -47,7 +48,7 @@ public class BusquedaTabu {
 
             for (int numvecinos = 0; numvecinos < k; numvecinos++) {
                 double[] vecino = new double[dimension];
-                creavecino(dimension, k, probabilidad, mejorSolucion, porcentajeAleatorio, valorMin, valorMax, vecino);
+                creavecino(dimension, k, probabilidad, mejorSolucion, porcentajeAleatorio, valorMin, valorMax, vecino,multiarranque);
                 int[] conversor = new int[dimension];
                 if (estabu(listaTabu, vecino) == false) {
                     conversionSolMemoriaCortoPlazo(mejorSolucion, vecino, conversor);
@@ -59,7 +60,7 @@ public class BusquedaTabu {
                             mejorcostevecino = nuevovecino;
                         }
                     }else{
-                       // System.out.println("------------------------------");
+                        // System.out.println("------------------------------");
                     }
                 }else{
                     //System.out.println("tabuuuu");
@@ -86,7 +87,8 @@ public class BusquedaTabu {
                 mejorSolucion = mejorSolucionActual;
             } else {
                 it2++;
-                 //System.out.println(it2);
+                multiarranque=(multiarranque+1)%3;
+                //System.out.println(it2);
 //                mejorcosteOptimoActual = mejorCoste;
 //                mejorOptimoActual = mejorSolucion;
                 mejorCoste = mejorCosteActual;
@@ -136,33 +138,44 @@ public class BusquedaTabu {
         for (int s = 0; s < mejorSolucion.length; s++) {
             log.append(" - solucionBT[" + s + "] = " + mejorSolucionGlobal[s] + "\n");
         }
-     //System.out.println(contador);
+        System.out.println(contador);
         ;
     }
 
 
-    void creavecino(int dimension, int k, double probabilidad, double[] mejorSolucion, float porcentajeAleatorio, float valorMin, float valorMax, double[] vecinos) {
+    void creavecino(int dimension, int k, double probabilidad, double[] mejorSolucion, float porcentajeAleatorio, float valorMin, float valorMax, double[] vecinos,int multiarranque) {
         // for (int i = 0; i < k; i++) {
         for (int j = 0; j < dimension; j++) {
             double muta = rand.Randfloat(0, 1);
             if (muta < probabilidad) {
-                float inferior = (float) (mejorSolucion[j] * (1 - porcentajeAleatorio));
-                float superior = (float) (mejorSolucion[j] * (1 + porcentajeAleatorio));
-                if (mejorSolucion[j] < 0) {
-                    //solo para negativos el rango cambia
-                    float aux = inferior;
-                    inferior = superior;
-                    superior = aux;
-                }
+                if(multiarranque==0) {
 
-                if (inferior < valorMin) {
-                    inferior = valorMin;
-                }
-                if (superior > valorMax) {
-                    superior = valorMax;
+                    float inferior = (float) (mejorSolucion[j] * (1 - porcentajeAleatorio));
+                    float superior = (float) (mejorSolucion[j] * (1 + porcentajeAleatorio));
+                    if (mejorSolucion[j] < 0) {
+                        //solo para negativos el rango cambia
+                        float aux = inferior;
+                        inferior = superior;
+                        superior = aux;
+                    }
 
+                    if (inferior < valorMin) {
+                        inferior = valorMin;
+                    }
+                    if (superior > valorMax) {
+                        superior = valorMax;
+
+                    }
+                    vecinos[j] = rand.Randfloat(inferior, superior);
+                }else{
+                    if (multiarranque==2){
+                        //VNS caso 2
+                        vecinos[j] = rand.Randfloat(valorMin, valorMax);
+                    } else{
+                        //VNS caso 3
+                        vecinos[j] = mejorSolucion[j]*-1;
+                    }
                 }
-                vecinos[j] = rand.Randfloat(inferior, superior);
             } else {
                 vecinos[j] = mejorSolucion[j];
             }
@@ -425,5 +438,6 @@ public class BusquedaTabu {
         return log.toString();
     }
 }
+
 
 

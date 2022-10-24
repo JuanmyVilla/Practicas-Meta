@@ -1,0 +1,17 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA TABU
+ - Funcion: rotated
+Coste Final BUSQUEDA TABU: 1.2846262977318177
+Tiempo de Ejecucion: 5 ms
+Numero de iteraciones 1000
+Solucion BUSQUEDA TABU:
+ - solucionBT[0] = -0.058183446526527405
+ - solucionBT[1] = -0.04168635234236717
+ - solucionBT[2] = -0.057405173778533936
+ - solucionBT[3] = -0.06398431211709976
+ - solucionBT[4] = -0.07525838911533356
+ - solucionBT[5] = -0.11029870808124542
+ - solucionBT[6] = -0.08804263919591904
+ - solucionBT[7] = -0.1428646594285965
+ - solucionBT[8] = -0.15399910509586334
+ - solucionBT[9] = -15831.04296875
+
