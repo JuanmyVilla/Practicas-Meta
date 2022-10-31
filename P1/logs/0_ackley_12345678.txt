@@ -1,17 +1,17 @@
 INICIO EJECUCION: Algoritmo BUSQUEDA TABU
  - Funcion: ackley
-Coste Final BUSQUEDA TABU: 20.0
-Tiempo de Ejecucion: 9 ms
+Coste Final BUSQUEDA TABU: 20.046473671099264
+Tiempo de Ejecucion: 12 ms
 Numero de iteraciones 1000
 Solucion BUSQUEDA TABU:
- - solucionBT[0] = 0.0
- - solucionBT[1] = 0.0
- - solucionBT[2] = 0.0
- - solucionBT[3] = 0.0
- - solucionBT[4] = 0.0
- - solucionBT[5] = 0.0
- - solucionBT[6] = 0.0
- - solucionBT[7] = 0.0
- - solucionBT[8] = 0.0
- - solucionBT[9] = 0.0
+ - solucionBT[0] = -8514.021484375
+ - solucionBT[1] = 2423.00390625
+ - solucionBT[2] = 23602.9921875
+ - solucionBT[3] = 20745.970703125
+ - solucionBT[4] = -13774.970703125
+ - solucionBT[5] = -21709.990234375
+ - solucionBT[6] = 20349.025390625
+ - solucionBT[7] = 925.92578125
+ - solucionBT[8] = -13934.990234375
+ - solucionBT[9] = 26148.015625
 

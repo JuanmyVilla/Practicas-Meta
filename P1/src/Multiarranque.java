@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Multiarranque {
     private final Randon rand;
     private StringBuilder log;
@@ -16,8 +19,7 @@ public class Multiarranque {
         long inicioBL = System.currentTimeMillis();
         double[] mejorSolucion = new double[dimension];
         double mejorCoste = 0.0;
-        double[] solucionAntesdeReinicializar = new double[dimension];
-        double costeAntesdeReinicializar = 0.0;
+
         double[] mejorSolucionGlobal = new double[dimension];
         double mejorCosteGlobal = 0.0;
         double[] mejorSolucionActual = new double[dimension];
@@ -34,13 +36,14 @@ public class Multiarranque {
         double[] solucion = new double[dimension];
         mejorSolucion = solucionInicialAleatoria(solucion, dimension, valorMin, valorMax);
         mejorCoste = evaluacion(mejorSolucion, funcion);
-        mejorcostevecino=Double.MAX_VALUE;
+        mejorcostevecino = Double.MAX_VALUE;
         mejorCosteGlobal = mejorCoste;
-        mejorSolucionGlobal = mejorSolucion;
-        listaTabu[contTabu % elementosTabu] = mejorSolucion;
+        mejorSolucionGlobal = Arrays.copyOf(mejorSolucion, mejorSolucion.length);
+        listaTabu[contTabu % elementosTabu] = Arrays.copyOf(mejorSolucion, mejorSolucion.length);
         contTabu++;
-        int multiarranque=0;
-        int contador = 0;
+        int multiarranque = 0;
+
+
         while (it < iteracion) {
             if (k == 0) {
                 k = rand.Randint(4, 10);
@@ -48,83 +51,71 @@ public class Multiarranque {
 
             for (int numvecinos = 0; numvecinos < k; numvecinos++) {
                 double[] vecino = new double[dimension];
-                creavecino(dimension, k, probabilidad, mejorSolucion, porcentajeAleatorio, valorMin, valorMax, vecino,multiarranque);
+                creavecino(dimension, k, probabilidad, mejorSolucion, porcentajeAleatorio, valorMin, valorMax, vecino, multiarranque);
                 int[] conversor = new int[dimension];
                 if (estabu(listaTabu, vecino) == false) {
                     conversionSolMemoriaCortoPlazo(mejorSolucion, vecino, conversor);
                     if (memoriaCortoplazo(conversor, memoriaCortoPlazo, dimension) == false) {
                         //actualizar mejor global, mejor del momento y rellenar lista tabu y memorias
                         double nuevovecino = evaluacion(vecino, funcion);
-                        if ( nuevovecino < mejorcostevecino) {
+                        if (nuevovecino < mejorcostevecino) {
                             mejorvecino = vecino;
                             mejorcostevecino = nuevovecino;
+
                         }
-                    }else{
-                        // System.out.println("------------------------------");
+
                     }
-                }else{
-                    //System.out.println("tabuuuu");
                 }
             }
+
             mejorSolucionActual = mejorvecino;
             mejorCosteActual = mejorcostevecino;
             listaTabu[contTabu % elementosTabu] = mejorSolucionActual;
             conversionSolMemoriaCortoPlazo(mejorSolucion, mejorSolucionActual, memoriaCortoPlazo[contTabu % elementosTabu]);
             memoriaLargoPlazo(valorMin, valorMax, memoriaLargoPlazo, divisiones, mejorSolucionActual);
             contTabu++;
-            // mejora = true;
-
-
-            //  }
-            // }
-//            }
 
             if (mejorCosteActual < mejorCoste) {
                 it2 = 0;
-//                mejorcosteOptimoActual = mejorCosteActual;
-//                mejorOptimoActual = mejorSolucionActual;
                 mejorCoste = mejorCosteActual;
                 mejorSolucion = mejorSolucionActual;
             } else {
                 it2++;
-                multiarranque=(multiarranque+1)%3;
-                //System.out.println(it2);
-//                mejorcosteOptimoActual = mejorCoste;
-//                mejorOptimoActual = mejorSolucion;
+                multiarranque = (multiarranque + 1) % 3;
                 mejorCoste = mejorCosteActual;
                 mejorSolucion = mejorSolucionActual;
             }
-
-            if (it == 1) {
-//                System.out.println("voy pòr la 5");
-            }
-
-
             if (it2 == itSinMejora) {
-                contador++;
                 float entro = rand.Randfloat(0, 1);
                 if (entro < 0.5) {
                     //diversificacion
-                    costeAntesdeReinicializar = mejorCoste;
-                    solucionAntesdeReinicializar = mejorSolucion;
-                    diversificacion(memoriaLargoPlazo, mejorSolucion, valorMin, valorMax, divisiones);
+                    double costeAntesdeReinicializarDiver = 0.0;
+                    costeAntesdeReinicializarDiver = mejorCoste;
+
+                    double[] solucionDespuesdiversificacion = new double[dimension];
+                    diversificacion(memoriaLargoPlazo, solucionDespuesdiversificacion, valorMin, valorMax, divisiones);
                     limpieza(memoriaCortoPlazo, memoriaLargoPlazo, listaTabu);
+                    mejorcostevecino=Double.MAX_VALUE;
                     it2 = 0;
+                    mejorSolucion = solucionDespuesdiversificacion;
+                    mejorCoste = evaluacion(mejorSolucion, funcion);
 
                 } else {
-                    costeAntesdeReinicializar = mejorCoste;
-                    solucionAntesdeReinicializar = mejorSolucion;
-                    //intensificacion(memoriaLargoPlazo, mejorSolucion, valorMin, valorMax, divisiones);
-                    masVisitados(memoriaLargoPlazo,mejorSolucion,valorMin,valorMax);
+                    double costeAntesdeReinicializarInter = 0.0;
+                    costeAntesdeReinicializarInter = mejorCoste;
+                    double[] solucionDespuesintensificacion = new double[dimension];
+                    masVisitados(memoriaLargoPlazo, solucionDespuesintensificacion, valorMin, valorMax);
                     //intensificacion
                     limpieza(memoriaCortoPlazo, memoriaLargoPlazo, listaTabu);
+                    mejorcostevecino=Double.MAX_VALUE;
                     it2 = 0;
-
+                    mejorSolucion = solucionDespuesintensificacion;
+                    mejorCoste = evaluacion(mejorSolucion, funcion);
                 }
             }
             if (mejorCoste < mejorCosteGlobal) {
                 mejorCosteGlobal = mejorCoste;
-                mejorSolucionGlobal = mejorSolucion;
+                mejorSolucionGlobal = Arrays.copyOf(mejorSolucion, mejorSolucion.length);
             }
 
             it++;
@@ -138,17 +129,15 @@ public class Multiarranque {
         for (int s = 0; s < mejorSolucion.length; s++) {
             log.append(" - solucionBT[" + s + "] = " + mejorSolucionGlobal[s] + "\n");
         }
-        System.out.println(contador);
-        ;
     }
 
 
-    void creavecino(int dimension, int k, double probabilidad, double[] mejorSolucion, float porcentajeAleatorio, float valorMin, float valorMax, double[] vecinos,int multiarranque) {
+    void creavecino(int dimension, int k, double probabilidad, double[] mejorSolucion, float porcentajeAleatorio, float valorMin, float valorMax, double[] vecinos, int multiarranque) {
         // for (int i = 0; i < k; i++) {
         for (int j = 0; j < dimension; j++) {
             double muta = rand.Randfloat(0, 1);
             if (muta < probabilidad) {
-                if(multiarranque==0) {
+                if (multiarranque == 0) {
 
                     float inferior = (float) (mejorSolucion[j] * (1 - porcentajeAleatorio));
                     float superior = (float) (mejorSolucion[j] * (1 + porcentajeAleatorio));
@@ -167,13 +156,13 @@ public class Multiarranque {
 
                     }
                     vecinos[j] = rand.Randfloat(inferior, superior);
-                }else{
-                    if (multiarranque==2){
+                } else {
+                    if (multiarranque == 2) {
                         //VNS caso 2
                         vecinos[j] = rand.Randfloat(valorMin, valorMax);
-                    } else{
+                    } else {
                         //VNS caso 3
-                        vecinos[j] = mejorSolucion[j]*-1;
+                        vecinos[j] = mejorSolucion[j] * -1;
                     }
                 }
             } else {
@@ -196,30 +185,6 @@ public class Multiarranque {
         }
         return sol;
     }
-
-//    void ordenaVecinos(double[][] vecinos, String funcion) {
-//
-//        double aux1;
-//        double aux2;
-//        System.out.println("Coste vecinos sin ordenar");
-//        for (int x = 0; x < vecinos.length; x++) {
-//            System.out.println(evaluacion(vecinos[x],funcion));
-//            for (int i = 0; i < vecinos.length - x - 1; i++) {
-//                aux1 = evaluacion(vecinos[i], funcion);
-//                aux2 = evaluacion(vecinos[i + 1], funcion);
-//                if (aux1 > aux2) {
-//                    double[] tmp = vecinos[i + 1];
-//                    vecinos[i + 1] = vecinos[i];
-//                    vecinos[i] = tmp;
-//                }
-//            }
-//        }
-//        System.out.println("vecinos ordenados");
-//        for (int i = 0; i < vecinos.length; i++) {
-//            System.out.println(evaluacion(vecinos[i],funcion));
-//        }
-//
-//    }
 
     boolean estabu(double[][] ltabu, double[] mejorSol) {
         float inf;
@@ -306,36 +271,37 @@ public class Multiarranque {
         }
         return posicion;
     }
-    void masVisitados( int mat[][] , double[] nuevaSol, double rmin, double rmax ){
-        int tam=nuevaSol.length;
-        double mayor;
-        int pc=0;
-        int []columnas =new int[3];
 
-        for (int i=0; i<tam; i++){
-            for (int k=0; k<3; k++){
-                mayor=-1;
-                for (int j=0; j<10; j++){
-                    if (mat[i][j]>=mayor){
-                        mayor=mat[i][j];
-                        pc=j;
+    void masVisitados(int mat[][], double[] nuevaSol, double rmin, double rmax) {
+        int tam = nuevaSol.length;
+        double mayor;
+        int pc = 0;
+        int[] columnas = new int[3];
+
+        for (int i = 0; i < tam; i++) {
+            for (int k = 0; k < 3; k++) {
+                mayor = -1;
+                for (int j = 0; j < 10; j++) {
+                    if (mat[i][j] >= mayor) {
+                        mayor = mat[i][j];
+                        pc = j;
                     }
                 }
-                columnas[k]=pc;
-                mat[i][pc]=-1;
+                columnas[k] = pc;
+                mat[i][pc] = -1;
             }
-            int aleatorio= rand.Randint(0, 2);
-            int col=columnas[aleatorio];
-            double ancho=(rmax-rmin+1)/10;
+            int aleatorio = rand.Randint(0, 2);
+            int col = columnas[aleatorio];
+            double ancho = (rmax - rmin + 1) / 10;
             /*double ini=rmin, fin=ini+ancho;
             for (int k=0; k<col; k++){
                 ini = fin;
                 fin = fin +ancho;
             }
             */
-            double ini=rmin+(col*ancho);
-            double fin=ini+ancho;
-            nuevaSol[i]= rand.Randfloat((float) ini, (float) fin);
+            double ini = rmin + (col * ancho);
+            double fin = ini + ancho;
+            nuevaSol[i] = rand.Randfloat((float) ini, (float) fin);
         }
     }
 
@@ -378,7 +344,6 @@ public class Multiarranque {
 
 
     void limpieza(int[][] memoriaCP, int[][] memoriaLP, double[][] listaTabu) {
-
         for (int i = 0; i < memoriaCP.length; i++) {
             for (int j = 0; j < memoriaLP.length; j++) {
                 memoriaCP[i][j] = 0;
