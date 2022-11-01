@@ -1,0 +1,17 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: ackley
+Coste Final BUSQUEDA LOCAL: 21.174537292288917
+Tiempo de Ejecucion: 1 ms
+Numero de iteraciones 5
+Solucion BUSQUEDA LOCAL:
+ - solucionBL[0] = 2490.103515625
+ - solucionBL[1] = 24822.08203125
+ - solucionBL[2] = 7062.0908203125
+ - solucionBL[3] = -588.551025390625
+ - solucionBL[4] = 643.10546875
+ - solucionBL[5] = 9140.904296875
+ - solucionBL[6] = -20284.982421875
+ - solucionBL[7] = 4061.575439453125
+ - solucionBL[8] = -149.14637756347656
+ - solucionBL[9] = 27307.826171875
+

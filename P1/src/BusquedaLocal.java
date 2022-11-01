@@ -67,8 +67,8 @@ public class BusquedaLocal {
         long finalBL = System.currentTimeMillis();
         log.append("Coste Final BUSQUEDA LOCAL: " + mejorCoste + "\n");
 
-        log.append("Tiempo de Ejecucion: " + (finalBL - inicioBL) + " ms\n");
-        log.append("Numero de iteraciones " + it);
+        log.append("Tiempo de Ejecucion: " + (finalBL - inicioBL) + " ms" + "\n");
+        log.append("Numero de iteraciones " + it + "\n");
         log.append("Solucion BUSQUEDA LOCAL:" + "\n");
         for (int s = 0; s < mejorSolucion.length; s++) {
             log.append(" - solucionBL[" + s + "] = " + mejorSolucion[s] + "\n");

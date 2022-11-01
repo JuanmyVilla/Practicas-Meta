@@ -1,0 +1,17 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: rotated
+Coste Final BUSQUEDA LOCAL: 4.4316826943699576E64
+Tiempo de Ejecucion: 0 ms
+Numero de iteraciones 141
+Solucion BUSQUEDA LOCAL:
+ - solucionBL[0] = -446.53607177734375
+ - solucionBL[1] = -1263.725830078125
+ - solucionBL[2] = -1944.2691650390625
+ - solucionBL[3] = -2613.7373046875
+ - solucionBL[4] = -2869.569091796875
+ - solucionBL[5] = -3535.044921875
+ - solucionBL[6] = -5529.86181640625
+ - solucionBL[7] = -7503.64111328125
+ - solucionBL[8] = -14891.2236328125
+ - solucionBL[9] = -3626.041015625
+

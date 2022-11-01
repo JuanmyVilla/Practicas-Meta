@@ -42,12 +42,14 @@ public class Multiarranque {
         listaTabu[contTabu % elementosTabu] = Arrays.copyOf(mejorSolucion, mejorSolucion.length);
         contTabu++;
         int multiarranque = 0;
-
+        int reinicioDiversificando = 0;
+        int reinicioIntensificando = 0;
 
         while (it < iteracion) {
             if (k == 0) {
                 k = rand.Randint(4, 10);
             }
+            log.append("Iteracion: " + it + ". Numero NO mejoras: " + it2 + ". Coste MEJOR SOLUCION: " + mejorCosteGlobal + ". Coste SOLUCION ACTUAL: " + mejorCoste + "Modo de generar el vecindario"+ multiarranque + "\n");
 
             for (int numvecinos = 0; numvecinos < k; numvecinos++) {
                 double[] vecino = new double[dimension];
@@ -89,6 +91,8 @@ public class Multiarranque {
                 float entro = rand.Randfloat(0, 1);
                 if (entro < 0.5) {
                     //diversificacion
+                    log.append("REINICIO!! EXPLORACION: Usamos los elementos menos frecuentes.\n");
+                    reinicioDiversificando++;
                     double costeAntesdeReinicializarDiver = 0.0;
                     costeAntesdeReinicializarDiver = mejorCoste;
 
@@ -99,18 +103,25 @@ public class Multiarranque {
                     it2 = 0;
                     mejorSolucion = solucionDespuesdiversificacion;
                     mejorCoste = evaluacion(mejorSolucion, funcion);
-
+                    if(costeAntesdeReinicializarDiver>mejorCoste){
+                        log.append("MEJORO EL COSTE DIVERSIFICANDO\n");
+                    }
                 } else {
                     double costeAntesdeReinicializarInter = 0.0;
+                    reinicioIntensificando++;
                     costeAntesdeReinicializarInter = mejorCoste;
                     double[] solucionDespuesintensificacion = new double[dimension];
-                    masVisitados(memoriaLargoPlazo, solucionDespuesintensificacion, valorMin, valorMax);
+                    intensificacion(memoriaLargoPlazo, solucionDespuesintensificacion, valorMin, valorMax);
                     //intensificacion
+                    log.append("REINICIO!! EXPLOTACION: Usamos los elementos mas frecuentes.\n");
                     limpieza(memoriaCortoPlazo, memoriaLargoPlazo, listaTabu);
                     mejorcostevecino=Double.MAX_VALUE;
                     it2 = 0;
                     mejorSolucion = solucionDespuesintensificacion;
                     mejorCoste = evaluacion(mejorSolucion, funcion);
+                    if(costeAntesdeReinicializarInter>mejorCoste){
+                        log.append("MEJORO EL COSTE INTENSIFICANDO\n");
+                    }
                 }
             }
             if (mejorCoste < mejorCosteGlobal) {
@@ -121,14 +132,16 @@ public class Multiarranque {
             it++;
         }
         long finalBL = System.currentTimeMillis();
-        log.append("Coste Final BUSQUEDA TABU: " + mejorCosteGlobal + "\n");
+        log.append("\n"+"Coste Final BUSQUEDA TABU CON VNS: " + mejorCosteGlobal + "\n");
 
         log.append("Tiempo de Ejecucion: " + (finalBL - inicioBL) + " ms\n");
         log.append("Numero de iteraciones " + it + "\n");
-        log.append("Solucion BUSQUEDA TABU:" + "\n");
+        log.append("Solucion BUSQUEDA TABU CON VNS:" + "\n");
         for (int s = 0; s < mejorSolucion.length; s++) {
-            log.append(" - solucionBT[" + s + "] = " + mejorSolucionGlobal[s] + "\n");
+            log.append(" - solucionBTVNS[" + s + "] = " + mejorSolucionGlobal[s] + "\n");
         }
+        log.append("Veces que intensifico " + reinicioIntensificando + "\n");
+        log.append("Veces que diversifico " + reinicioDiversificando + "\n");
     }
 
 
@@ -169,7 +182,6 @@ public class Multiarranque {
                 vecinos[j] = mejorSolucion[j];
             }
         }
-        // }
     }
 
     void mejorvecino(double[] vecino, double[] mejorvecino, String funcion) {
@@ -219,7 +231,7 @@ public class Multiarranque {
 
         for (int i = 0; i < memoria.length; i++) {
             for (int j = 0; j < dimension; j++) {
-                if (vecinos[j] == memoria[i][j]) {//quizas no funciones porque mira todos iguales y solo deba mirar los 1
+                if (vecinos[j] == memoria[i][j]) {
                     tabu = true;
                 } else {
                     tabu = false;
@@ -272,7 +284,7 @@ public class Multiarranque {
         return posicion;
     }
 
-    void masVisitados(int mat[][], double[] nuevaSol, double rmin, double rmax) {
+    void intensificacion(int mat[][], double[] nuevaSol, double rmin, double rmax) {
         int tam = nuevaSol.length;
         double mayor;
         int pc = 0;
@@ -293,33 +305,9 @@ public class Multiarranque {
             int aleatorio = rand.Randint(0, 2);
             int col = columnas[aleatorio];
             double ancho = (rmax - rmin + 1) / 10;
-            /*double ini=rmin, fin=ini+ancho;
-            for (int k=0; k<col; k++){
-                ini = fin;
-                fin = fin +ancho;
-            }
-            */
             double ini = rmin + (col * ancho);
             double fin = ini + ancho;
             nuevaSol[i] = rand.Randfloat((float) ini, (float) fin);
-        }
-    }
-
-    void intensificacion(int[][] memoria, double[] solucion, float valormin, float valormax, int divisiones) {
-        float corte = (valormax - valormin) / divisiones;
-        int max = 0;
-        int posicion = 0;
-        for (int i = 0; i < memoria.length; i++) {
-            for (int j = 0; j < memoria.length; j++) {
-                for (int k = 0; k < memoria.length; k++) {
-                    if (memoria[i][j] > max) {
-                        max = memoria[i][j];
-                        posicion = j;
-                    }
-                }
-            }
-            double aux = rand.Randfloat(posicion * corte + valormin, (posicion + 1) * corte + valormin);
-            solucion[i] = aux;
         }
     }
 

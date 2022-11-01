@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Configurador {
 
     private ArrayList<String> funcion;
-    private ArrayList<Integer> algoritmos;
+    private ArrayList<String> algoritmos;
 
     private ArrayList<Long> semillas;
     private ArrayList<Float> minimos;
@@ -76,30 +76,10 @@ public class Configurador {
                     case "algoritmos":
                         String[] _algoritmos = split[1].split(",");
                         for (int i = 0; i < _algoritmos.length; i++) {
-                            algoritmos.add(Integer.valueOf(_algoritmos[i]));
+                            algoritmos.add((_algoritmos[i]));
                         }
                         break;
-//                    case "numerocromosomas":
-//                        numerocromosomas = Integer.parseInt(split[1]);
-//                        break;
-//                    case "cromosomasaleatorios":
-//                        cromosomasaleatorios = Integer.parseInt(split[1]);
-//                        break;
-//                    case "probabilidadmutacion":
-//                        probabilidadmutacion = Float.parseFloat(split[1]);
-//                        break;
-//                    case "probabilidadcruce":
-//                        probabilidadcruce = Float.parseFloat(split[1]);
-//                        break;
-//                    case "numevaluaciones":
-//                        numevaluaciones = Integer.parseInt(split[1]);
-//                        break;
-//                    case "numiteraciones":
-//                        numiteraciones = Integer.parseInt(split[1]);
-//                        break;
-//                    case "busquedalocal":
-//                        busquedalocal = Integer.parseInt(split[1]);
-//                        break;
+
 
                 }
             }
@@ -116,11 +96,11 @@ public class Configurador {
         this.funcion = funcion;
     }
 
-    public ArrayList<Integer> getAlgoritmos() {
+    public ArrayList<String> getAlgoritmos() {
         return algoritmos;
     }
 
-    public void setAlgoritmos(ArrayList<Integer> algoritmos) {
+    public void setAlgoritmos(ArrayList<String> algoritmos) {
         this.algoritmos = algoritmos;
     }
 

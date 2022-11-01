@@ -1,0 +1,17 @@
+INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
+ - Funcion: dixon
+Coste Final BUSQUEDA LOCAL: 1.5420461759445775E13
+Tiempo de Ejecucion: 0 ms
+Numero de iteraciones 25
+Solucion BUSQUEDA LOCAL:
+ - solucionBL[0] = 792.851318359375
+ - solucionBL[1] = 14.359743118286133
+ - solucionBL[2] = 392.1546936035156
+ - solucionBL[3] = -5.607377529144287
+ - solucionBL[4] = 442.4468688964844
+ - solucionBL[5] = 442.918212890625
+ - solucionBL[6] = 490.41778564453125
+ - solucionBL[7] = 376.55450439453125
+ - solucionBL[8] = 109.05767059326172
+ - solucionBL[9] = 309.5847473144531
+
