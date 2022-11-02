@@ -57,7 +57,6 @@ public class BusquedaTabu {
                 if (estabu(listaTabu, vecino) == false) {
                     conversionSolMemoriaCortoPlazo(mejorSolucion, vecino, conversor);
                     if (memoriaCortoplazo(conversor, memoriaCortoPlazo, dimension) == false) {
-                        //actualizar mejor global, mejor del momento y rellenar lista tabu y memorias
                         double nuevovecino = evaluacion(vecino, funcion);
                         if (nuevovecino < mejorcostevecino) {
                             mejorvecino = vecino;
@@ -68,14 +67,12 @@ public class BusquedaTabu {
                     }
                 }
             }
-
             mejorSolucionActual = mejorvecino;
             mejorCosteActual = mejorcostevecino;
             listaTabu[contTabu % elementosTabu] = mejorSolucionActual;
             conversionSolMemoriaCortoPlazo(mejorSolucion, mejorSolucionActual, memoriaCortoPlazo[contTabu % elementosTabu]);
             memoriaLargoPlazo(valorMin, valorMax, memoriaLargoPlazo, divisiones, mejorSolucionActual);
             contTabu++;
-
             if (mejorCosteActual < mejorCoste) {
                 it2 = 0;
                 mejorCoste = mejorCosteActual;
@@ -93,7 +90,6 @@ public class BusquedaTabu {
                     log.append("REINICIO!! EXPLORACION: Usamos los elementos menos frecuentes.\n");
                     double costeAntesdeReinicializarDiver = 0.0;
                     costeAntesdeReinicializarDiver = mejorCoste;
-
                     double[] solucionDespuesdiversificacion = new double[dimension];
                     diversificacion(memoriaLargoPlazo, solucionDespuesdiversificacion, valorMin, valorMax, divisiones);
                     limpieza(memoriaCortoPlazo, memoriaLargoPlazo, listaTabu);
@@ -101,24 +97,24 @@ public class BusquedaTabu {
                     it2 = 0;
                     mejorSolucion = solucionDespuesdiversificacion;
                     mejorCoste = evaluacion(mejorSolucion, funcion);
-                    if(costeAntesdeReinicializarDiver>mejorCoste){
+                    if (costeAntesdeReinicializarDiver > mejorCoste) {
                         log.append("MEJORO EL COSTE DIVERSIFICANDO\n");
                     }
 
                 } else {
+                    //intensificacion
                     reinicioIntensificando++;
                     double costeAntesdeReinicializarInter = 0.0;
                     costeAntesdeReinicializarInter = mejorCoste;
                     double[] solucionDespuesintensificacion = new double[dimension];
                     intensificacion(memoriaLargoPlazo, solucionDespuesintensificacion, valorMin, valorMax);
-                    //intensificacion
                     log.append("REINICIO!! EXPLOTACION: Usamos los elementos mas frecuentes.\n");
                     limpieza(memoriaCortoPlazo, memoriaLargoPlazo, listaTabu);
                     mejorcostevecino = Double.MAX_VALUE;
                     it2 = 0;
                     mejorSolucion = solucionDespuesintensificacion;
                     mejorCoste = evaluacion(mejorSolucion, funcion);
-                    if(costeAntesdeReinicializarInter>mejorCoste){
+                    if (costeAntesdeReinicializarInter > mejorCoste) {
                         log.append("MEJORO EL COSTE INTENSIFICANDO\n");
                     }
                 }
@@ -127,7 +123,6 @@ public class BusquedaTabu {
                 mejorCosteGlobal = mejorCoste;
                 mejorSolucionGlobal = Arrays.copyOf(mejorSolucion, mejorSolucion.length);
             }
-
             it++;
         }
         long finalBL = System.currentTimeMillis();
@@ -152,7 +147,6 @@ public class BusquedaTabu {
                 float inferior = (float) (mejorSolucion[j] * (1 - porcentajeAleatorio));
                 float superior = (float) (mejorSolucion[j] * (1 + porcentajeAleatorio));
                 if (mejorSolucion[j] < 0) {
-                    //solo para negativos el rango cambia
                     float aux = inferior;
                     inferior = superior;
                     superior = aux;
@@ -171,7 +165,6 @@ public class BusquedaTabu {
                 vecinos[j] = mejorSolucion[j];
             }
         }
-        // }
     }
 
     double[] solucionInicialAleatoria(double[] sol, int dimension, float valorMin, float valorMax) {
@@ -186,14 +179,12 @@ public class BusquedaTabu {
         float inf;
         float sup;
         boolean tabu = false;
-        //primera comprobacion
         for (int j = 0; j < ltabu.length; j++) {
             for (int i = 0; i < mejorSol.length; i++) {
                 double valor = ltabu[j][i];
                 inf = (float) (valor * 0.99);
                 sup = (float) (valor * 1.01);
                 if (valor < 0) {
-                    //solo para negativos en rango cambia
                     float aux = inf;
                     inf = sup;
                     sup = aux;
@@ -213,7 +204,7 @@ public class BusquedaTabu {
 
         for (int i = 0; i < memoria.length; i++) {
             for (int j = 0; j < dimension; j++) {
-                if (vecinos[j] == memoria[i][j]) {//quizas no funciones porque mira todos iguales y solo deba mirar los 1
+                if (vecinos[j] == memoria[i][j]) {
                     tabu = true;
                 } else {
                     tabu = false;
@@ -221,7 +212,6 @@ public class BusquedaTabu {
                 }
             }
         }
-
         return tabu;
     }
 

@@ -13,7 +13,7 @@ public class BusquedaLocal {
 
         log.append("INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL\n");
         log.append(" - Funcion: " + funcion + "\n");
-        long inicioBL = System.currentTimeMillis();
+        long inicioBL = System.nanoTime();
         double[] mejorSolucion = new double[dimension];
         double mejorCoste = 0.0;
         int it = 0;
@@ -33,18 +33,17 @@ public class BusquedaLocal {
                     if (muta < probabilidad) {
                         float inferior = (float) (mejorSolucion[j] * (1 - porcentajeAleatorio));
                         float superior = (float) (mejorSolucion[j] * (1 + porcentajeAleatorio));
-                        if (mejorSolucion[j]<0)  {
-                            //solo para negativos el rango cambia
-                            float aux= inferior;
-                            inferior=superior;
-                            superior=aux;
+                        if (mejorSolucion[j] < 0) {
+                            float aux = inferior;
+                            inferior = superior;
+                            superior = aux;
                         }
 
-                        if (inferior<valorMin){
-                            inferior=valorMin;
+                        if (inferior < valorMin) {
+                            inferior = valorMin;
                         }
-                        if (superior>valorMax){
-                            superior=valorMax;
+                        if (superior > valorMax) {
+                            superior = valorMax;
 
                         }
                         vecinos[i][j] = rand.Randfloat(inferior, superior);
@@ -64,16 +63,16 @@ public class BusquedaLocal {
             }
             it++;
         }
-        long finalBL = System.currentTimeMillis();
+        long finalBL = System.nanoTime();
         log.append("Coste Final BUSQUEDA LOCAL: " + mejorCoste + "\n");
 
-        log.append("Tiempo de Ejecucion: " + (finalBL - inicioBL) + " ms" + "\n");
+        log.append("Tiempo de Ejecucion: " + (finalBL - inicioBL) + " ns" + "\n");
         log.append("Numero de iteraciones " + it + "\n");
         log.append("Solucion BUSQUEDA LOCAL:" + "\n");
         for (int s = 0; s < mejorSolucion.length; s++) {
             log.append(" - solucionBL[" + s + "] = " + mejorSolucion[s] + "\n");
         }
-   }
+    }
 
     double[] solucionInicialAleatoria(double[] sol, int dimension, float valorMin, float valorMax) {
 
@@ -136,5 +135,8 @@ public class BusquedaLocal {
         }
         return coste;
     }
-    public String getLog() { return log.toString(); }
+
+    public String getLog() {
+        return log.toString();
+    }
 }

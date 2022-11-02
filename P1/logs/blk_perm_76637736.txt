@@ -1,7 +1,7 @@
 INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
  - Funcion: perm
 Coste Final BUSQUEDA LOCAL: 3.119385157438418E39
-Tiempo de Ejecucion: 1 ms
+Tiempo de Ejecucion: 722500 ns
 Numero de iteraciones 13
 Solucion BUSQUEDA LOCAL:
  - solucionBL[0] = 65.4954833984375

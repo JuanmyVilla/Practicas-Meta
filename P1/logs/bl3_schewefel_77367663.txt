@@ -1,7 +1,7 @@
 INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
  - Funcion: schewefel
 Coste Final BUSQUEDA LOCAL: 2689.919862924492
-Tiempo de Ejecucion: 1 ms
+Tiempo de Ejecucion: 94400 ns
 Numero de iteraciones 4
 Solucion BUSQUEDA LOCAL:
  - solucionBL[0] = -294.4987487792969

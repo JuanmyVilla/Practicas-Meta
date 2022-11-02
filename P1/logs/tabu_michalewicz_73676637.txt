@@ -1004,7 +1004,7 @@ Iteracion: 998. Numero NO mejoras: 0. Coste MEJOR SOLUCION: -6.767553826615725. 
 Iteracion: 999. Numero NO mejoras: 0. Coste MEJOR SOLUCION: -6.767553826615725. Coste SOLUCION ACTUAL: -2.935033164695379
 
 Coste Final BUSQUEDA TABU: -6.767553826615725
-Tiempo de Ejecucion: 9 ms
+Tiempo de Ejecucion: 10 ms
 Solucion BUSQUEDA TABU:
  - solucionBT[0] = 5.552059650421143
  - solucionBT[1] = 8.006210327148438

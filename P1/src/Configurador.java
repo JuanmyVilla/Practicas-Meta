@@ -14,19 +14,18 @@ public class Configurador {
     private ArrayList<Float> maximos;
     private int dimension;
     private int iteraciones;
-
     private float probabilidad;
-
     private float porcentajeAleatorio;
 
+    private int selector;
 
 
     public Configurador(String ruta) {
         funcion = new ArrayList<>();
-        algoritmos=new ArrayList<>();
-        minimos=new ArrayList<>();
-        maximos=new ArrayList<>();
-        semillas=new ArrayList<>();
+        algoritmos = new ArrayList<>();
+        minimos = new ArrayList<>();
+        maximos = new ArrayList<>();
+        semillas = new ArrayList<>();
 
 
         String linea;
@@ -79,7 +78,9 @@ public class Configurador {
                             algoritmos.add((_algoritmos[i]));
                         }
                         break;
-
+                    case "selector":
+                        selector = Integer.parseInt(split[1]);
+                        break;
 
                 }
             }
@@ -160,4 +161,11 @@ public class Configurador {
         this.porcentajeAleatorio = porcentajeAleatorio;
     }
 
+    public int getSelector() {
+        return selector;
+    }
+
+    public void setSelector(int selector) {
+        this.selector = selector;
+    }
 }

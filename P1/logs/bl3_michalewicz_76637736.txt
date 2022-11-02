@@ -1,7 +1,7 @@
 INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
  - Funcion: michalewicz
 Coste Final BUSQUEDA LOCAL: -0.5065152504287903
-Tiempo de Ejecucion: 0 ms
+Tiempo de Ejecucion: 22700 ns
 Numero de iteraciones 3
 Solucion BUSQUEDA LOCAL:
  - solucionBL[0] = 9.051573753356934

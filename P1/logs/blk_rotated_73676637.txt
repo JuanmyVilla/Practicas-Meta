@@ -1,7 +1,7 @@
 INICIO EJECUCION: Algoritmo BUSQUEDA LOCAL
  - Funcion: rotated
 Coste Final BUSQUEDA LOCAL: 4.4316826943699576E64
-Tiempo de Ejecucion: 0 ms
+Tiempo de Ejecucion: 898800 ns
 Numero de iteraciones 141
 Solucion BUSQUEDA LOCAL:
  - solucionBL[0] = -446.53607177734375
