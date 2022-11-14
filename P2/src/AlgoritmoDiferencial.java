@@ -7,7 +7,7 @@ public class AlgoritmoDiferencial {
         rand.Set_random(semilla);
     }
 
-    public void Evolutivo(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int k, int dimension, int tamTorneo, Float valorMax, Float valorMin, String funcion, String selectorCruce,float alfa) {
+    public void EvolucionDiferencial(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int algo, int dimension, int tamTorneo, Float valorMax, Float valorMin, String funcion, String selectorCruce,float factorrecombinacion) {
 
         Cromosoma mejorCromosomaGlobal = new Cromosoma();
         Cromosoma mejorGeneracion = new Cromosoma();
@@ -15,49 +15,46 @@ public class AlgoritmoDiferencial {
         Cromosoma[] poblacionInicial = new Cromosoma[poblacion];
         Cromosoma[] nuevaPoblacion = new Cromosoma[poblacion];
         generaPoblacionInicial(poblacionInicial, poblacion, dimension, valorMin, valorMax, funcion);
+        //evaluar en el bucle
         mejorCromosomaGlobal = new Cromosoma(poblacionInicial[mejorCromosoma(poblacionInicial, dimension)]);
        // mejorGeneracion = new Cromosoma(poblacionInicial[mejorCromosoma(poblacionInicial, dimension)]);
-        int it = 0;
+        int it = poblacion;
         while (it < evaluaciones) {
             Cromosoma[] mutados = new Cromosoma[poblacion];
             for (int i = 0; i < poblacion; i++) {
-               mutados[i]=new Cromosoma(mutacion(poblacionInicial[i], (float) probabilidadMutacion,dimension,valorMin,valorMax,funcion));
+                mutados[i] = new Cromosoma(mutacion(poblacionInicial[i], (float) probabilidadMutacion, dimension, valorMin, valorMax, funcion));
             }
-            int nuevosHijos = 0;
-            while (nuevosHijos < poblacion) {
-                int aleatorio = rand.Randint(0, poblacion - 1);
-                int aleatorio2 = rand.Randint(0, poblacion - 1);
-                int aleatorio3 = rand.Randint(0, poblacion - 1);
-                if (distintos(nuevosHijos,aleatorio,aleatorio2,aleatorio3)) {
-                    Cromosoma objetivo= new Cromosoma(mutados[encuentraObjetivo(mutados,nuevosHijos,aleatorio,aleatorio2,aleatorio3)]);
-                    float F=rand.Randfloat((float) 0, (float) 1.01);
-                    double [] cromfinal= new double[dimension];
-                    for (int i = 0; i < dimension; i++) {
+            for (int k = 0; k < poblacion; k++) {
+                int indiceobjetivo = torneo(mutados, 3, poblacion, "mejor");
+                int aleatorio;
+                int aleatorio2;
+                while (distintos(k, indiceobjetivo, aleatorio2 = rand.Randint(0, poblacion - 1), aleatorio = rand.Randint(0, poblacion - 1))) {
+                    Cromosoma objetivo = new Cromosoma(mutados[indiceobjetivo]);
+                    float F = rand.Randfloat((float) 0, (float) 1.01);
+                    double[] cromfinal = new double[dimension];
+                    for (int j = 0; j < dimension; j++) {
                         float eleccion = rand.Randfloat((float) 0, (float) 1.01);
-                        if(eleccion<alfa){
-                            cromfinal[i]=objetivo.getIndividuosIndice(i);
-                        }else{
-                            cromfinal[i]=recombinacion(mutados[nuevosHijos].getIndividuosIndice(i),F,mutados[aleatorio].getIndividuosIndice(i),mutados[aleatorio2].getIndividuosIndice(i),valorMax,valorMin);
+                        if (eleccion < factorrecombinacion) {
+                            cromfinal[j] = objetivo.getIndividuosIndice(j);
+                        } else {
+                            cromfinal[j] = recombinacion(mutados[j].getIndividuosIndice(j), F, mutados[aleatorio].getIndividuosIndice(j), mutados[aleatorio2].getIndividuosIndice(j), valorMax, valorMin);
                         }
                     }
-
-
-                   nuevosHijos++;
+                    double posiblemejor = evaluacion(cromfinal, funcion);
+                    it++;
+                    if (posiblemejor < mutados[k].getCoste()) {
+                        nuevaPoblacion[k] = new Cromosoma(cromfinal, posiblemejor);
+                    } else {
+                        nuevaPoblacion[k] = new Cromosoma(mutados[k]);
+                    }
                 }
             }
-            boolean encontrado = encuentraElite(nuevaPoblacion, mejorGeneracion, poblacion, dimension);
-            if (!encontrado) {
-                //hacer el reemplazo
-                int ele = torneo(nuevaPoblacion, 4, poblacion, "peor");
-                nuevaPoblacion[ele] = new Cromosoma(mejorGeneracion);
-            }
-            int nuevomejor = mejorCromosoma(nuevaPoblacion, poblacion);
-            mejorGeneracion = new Cromosoma(nuevaPoblacion[nuevomejor]);
-            if (mejorGeneracion.getCoste() < mejorCromosomaGlobal.getCoste()) {
-                mejorCromosomaGlobal = new Cromosoma(mejorGeneracion);
-            }
-            it++;
         }
+            int mejorpoblacion= mejorCromosoma(nuevaPoblacion,poblacion);
+            if(nuevaPoblacion[mejorpoblacion].getCoste()<mejorCromosomaGlobal.getCoste()){
+                mejorCromosomaGlobal=new Cromosoma(nuevaPoblacion[mejorpoblacion]);
+            }
+
 
         System.out.println("El coste es: " + mejorCromosomaGlobal.getCoste());
         System.out.println("El mejor cromosoma es : ");
@@ -125,26 +122,23 @@ public class AlgoritmoDiferencial {
 
     int torneo(Cromosoma[] cromosomas, int tamTorneo, int poblacion, String selector) {
         Cromosoma[] torneoCromosomas = new Cromosoma[tamTorneo];
-        int[] vector = new int[poblacion];
-        for (int i = 0; i < poblacion; i++) {
-            vector[i] = i;
-        }
+//        int[] vector = new int[poblacion];
+//        for (int i = 0; i < poblacion; i++) {
+//            vector[i] = i;
+//        }
         int[] elegidos = new int[tamTorneo];
-        for (int i = 0; i < tamTorneo; i++) {
+       // for (int i = 0; i < tamTorneo; i++) {
+        int tam=0;
+        while(tam<tamTorneo){
             int aleatorio1 = rand.Randint(0, poblacion - 1);
-            elegidos[i] = aleatorio1;
-        }
-        boolean norepetidos = true;
-        while (norepetidos) {
-            int repetido = comprueba(elegidos);
-            if (repetido == -1) {
-                norepetidos = false;
-                break;
+            if(!comprueba(elegidos,aleatorio1)){
+                elegidos[tam] = aleatorio1;
+                tam++;
             }
-            elegidos[repetido] = rand.Randint(0, poblacion - 1);
         }
+
         for (int i = 0; i < tamTorneo; i++) {
-            torneoCromosomas[i] = cromosomas[elegidos[i]];
+            torneoCromosomas[i] = new Cromosoma(cromosomas[elegidos[i]]);
         }
         int ele;
         if (selector == "mejor") {
@@ -156,15 +150,13 @@ public class AlgoritmoDiferencial {
         return ele;
     }
 
-    int comprueba(int[] elementos) {
+    boolean comprueba(int[] elementos,int posible) {
         for (int i = 0; i < elementos.length; i++) {
-            for (int j = i + 1; j < elementos.length; j++) {
-                if (elementos[i] == elementos[j]) {
-                    return j;
+                if (elementos[i] == posible) {
+                    return true;
                 }
             }
-        }
-        return -1;
+        return false;
     }
 
     double recombinacion (double padre,float f,double ale1,double ale2,double rmax,double rmin){
@@ -197,7 +189,7 @@ public class AlgoritmoDiferencial {
                 aux[i] = hijo.getIndividuosIndice(i);
             }
         }
-        hijo = new Cromosoma(aux, evaluacion(aux, funcion));
+        //hijo = new Cromosoma(aux, evaluacion(aux, funcion));
         return hijo;
     }
 

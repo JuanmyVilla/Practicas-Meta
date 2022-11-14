@@ -23,9 +23,11 @@ public class AlgoritmoEvolutivo {
             Cromosoma[] ganadoresTorneo = new Cromosoma[poblacion];
             //selecciono a los padres
             for (int i = 0; i < poblacion; i++) {
+                //mirar repetidos
                 int elementoElegido = torneo(poblacionInicial, tamTorneo, poblacion, "mejor");
                 cromosomaTorneo = new Cromosoma(poblacionInicial[elementoElegido]);
                 ganadoresTorneo[i] = new Cromosoma(cromosomaTorneo);
+
             }
             int nuevosHijos = 0;
             while (nuevosHijos < poblacion) {
@@ -41,6 +43,7 @@ public class AlgoritmoEvolutivo {
                     }
                     nuevaPoblacion[nuevosHijos] = new Cromosoma(mutacion(cruzado, (float) probabilidadMutacion, dimension, valorMin, valorMax, funcion));
                     nuevosHijos++;
+                    it++;
                 }
             }
             boolean encontrado = encuentraElite(nuevaPoblacion, elite, poblacion, dimension);
@@ -54,7 +57,7 @@ public class AlgoritmoEvolutivo {
             if (elite.getCoste() < mejorCromosomaGlobal.getCoste()) {
                 mejorCromosomaGlobal = new Cromosoma(elite);
             }
-            it++;
+
         }
 
         System.out.println("El coste es: " + mejorCromosomaGlobal.getCoste());
@@ -101,26 +104,23 @@ public class AlgoritmoEvolutivo {
 
     int torneo(Cromosoma[] cromosomas, int tamTorneo, int poblacion, String selector) {
         Cromosoma[] torneoCromosomas = new Cromosoma[tamTorneo];
-        int[] vector = new int[poblacion];
-        for (int i = 0; i < poblacion; i++) {
-            vector[i] = i;
-        }
+//        int[] vector = new int[poblacion];
+//        for (int i = 0; i < poblacion; i++) {
+//            vector[i] = i;
+//        }
         int[] elegidos = new int[tamTorneo];
-        for (int i = 0; i < tamTorneo; i++) {
+        // for (int i = 0; i < tamTorneo; i++) {
+        int tam=0;
+        while(tam<tamTorneo){
             int aleatorio1 = rand.Randint(0, poblacion - 1);
-            elegidos[i] = aleatorio1;
-        }
-        boolean norepetidos = true;
-        while (norepetidos) {
-            int repetido = comprueba(elegidos);
-            if (repetido == -1) {
-                norepetidos = false;
-                break;
+            if(!comprueba(elegidos,aleatorio1)){
+                elegidos[tam] = aleatorio1;
+                tam++;
             }
-            elegidos[repetido] = rand.Randint(0, poblacion - 1);
         }
+
         for (int i = 0; i < tamTorneo; i++) {
-            torneoCromosomas[i] = cromosomas[elegidos[i]];
+            torneoCromosomas[i] = new Cromosoma(cromosomas[elegidos[i]]);
         }
         int ele;
         if (selector == "mejor") {
@@ -131,16 +131,13 @@ public class AlgoritmoEvolutivo {
 
         return ele;
     }
-
-    int comprueba(int[] elementos) {
+    boolean comprueba(int[] elementos,int posible) {
         for (int i = 0; i < elementos.length; i++) {
-            for (int j = i + 1; j < elementos.length; j++) {
-                if (elementos[i] == elementos[j]) {
-                    return j;
-                }
+            if (elementos[i] == posible) {
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 
     Cromosoma cruceMedia(Cromosoma padre1, Cromosoma padre2, int dimension, String funcion) {
