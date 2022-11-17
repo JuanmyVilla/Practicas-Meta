@@ -7,7 +7,7 @@ public class AlgoritmoEvolutivo {
         rand.Set_random(semilla);
     }
 
-    public void Evolutivo(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int k, int dimension, int tamTorneo, Float valorMax, Float valorMin, String funcion, String selectorCruce,float alfa) {
+    public void Evolutivo(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int k, int dimension, int tamTorneo, Float valorMin, Float valorMax, String funcion, String selectorCruce,float alfa) {
 
         Cromosoma mejorCromosomaGlobal = new Cromosoma();
         Cromosoma elite = new Cromosoma();
@@ -17,7 +17,11 @@ public class AlgoritmoEvolutivo {
         generaPoblacionInicial(poblacionInicial, poblacion, dimension, valorMin, valorMax, funcion);
         mejorCromosomaGlobal = new Cromosoma(poblacionInicial[mejorCromosoma(poblacionInicial, dimension)]);
         elite = new Cromosoma(poblacionInicial[mejorCromosoma(poblacionInicial, dimension)]);
-        int it = 0;
+        boolean [] marcados = new boolean[poblacion];
+        for (int i = 0; i < poblacion; i++) {
+            marcados[i]=false;
+        }
+        int it = poblacion;
         while (it < evaluaciones) {
             Cromosoma cromosomaTorneo = new Cromosoma();
             Cromosoma[] ganadoresTorneo = new Cromosoma[poblacion];
@@ -36,14 +40,14 @@ public class AlgoritmoEvolutivo {
                 if (aleatorio != aleatorio2) {
                     Cromosoma cruzado;
                     if (selectorCruce == "media") {
-                        cruzado = new Cromosoma(cruceMedia(ganadoresTorneo[aleatorio], ganadoresTorneo[aleatorio2], dimension, funcion));
+                        cruzado = new Cromosoma(cruceMedia(ganadoresTorneo[aleatorio], ganadoresTorneo[aleatorio2], dimension, funcion,probabilidadCruce,marcados,nuevosHijos));
                     } else {
-                        cruzado = new Cromosoma(cruceBlx(ganadoresTorneo[aleatorio], ganadoresTorneo[aleatorio2], dimension,funcion,valorMin,valorMax,alfa));
+                        cruzado = new Cromosoma(cruceBlx(ganadoresTorneo[aleatorio], ganadoresTorneo[aleatorio2], dimension,funcion,valorMin,valorMax,alfa,probabilidadCruce,marcados,nuevosHijos));
 
                     }
-                    nuevaPoblacion[nuevosHijos] = new Cromosoma(mutacion(cruzado, (float) probabilidadMutacion, dimension, valorMin, valorMax, funcion));
+                    nuevaPoblacion[nuevosHijos] = new Cromosoma(mutacion(cruzado, (float) probabilidadMutacion, dimension, valorMin, valorMax, funcion,marcados,nuevosHijos));
+                    it=evaluados(nuevaPoblacion[nuevosHijos],marcados,nuevosHijos,funcion,it);
                     nuevosHijos++;
-                    it++;
                 }
             }
             boolean encontrado = encuentraElite(nuevaPoblacion, elite, poblacion, dimension);
@@ -140,62 +144,92 @@ public class AlgoritmoEvolutivo {
         return false;
     }
 
-    Cromosoma cruceMedia(Cromosoma padre1, Cromosoma padre2, int dimension, String funcion) {
+    Cromosoma cruceMedia(Cromosoma padre1, Cromosoma padre2, int dimension, String funcion,double probabilidad,boolean[] marcados,int pos) {
         double[] aux = new double[dimension];
         double[] aux2 = new double[dimension];
         aux = padre1.getIndividuos();
         aux2 = padre2.getIndividuos();
         double[] hijo1 = new double[dimension];
         Cromosoma hijo;
-        for (int i = 0; i < dimension; i++) {
-            hijo1[i] = (aux[i] + aux2[i]) / 2;
+        float cruzo = rand.Randfloat(0, (float) 1.01);
+        if(cruzo<probabilidad) {
+            for (int i = 0; i < dimension; i++) {
+                hijo1[i] = (aux[i] + aux2[i]) / 2;
+            }
+
+            hijo = new Cromosoma(hijo1);
+            marcados[pos]=true;
+        }else{
+            hijo = new Cromosoma(padre1);
         }
-        hijo = new Cromosoma(hijo1, evaluacion(hijo1, funcion));
         return hijo;
     }
 
-    Cromosoma cruceBlx(Cromosoma padre1, Cromosoma padre2, int dimension, String funcion, float min, float max, double alfa) {
+    Cromosoma cruceBlx(Cromosoma padre1, Cromosoma padre2, int dimension, String funcion, float min, float max, double alfa,double probabilidad,boolean[] marcados,int pos) {
         double[] hijo1 = new double[dimension];
         Cromosoma hijo;
         double maximo;
         double minimo;
         double Int;
-        for (int i = 0; i < dimension; i++) {
-            if (padre1.getIndividuosIndice(i) < padre2.getIndividuosIndice(i)) {
-                minimo = padre1.getIndividuosIndice(i);
-                maximo = padre2.getIndividuosIndice(i);
-            } else {
-                maximo = padre1.getIndividuosIndice(i);
-                minimo = padre2.getIndividuosIndice(i);
-            }
-            Int = maximo - minimo;
+        float cruzo = rand.Randfloat(0, (float) 1.01);
+        if(cruzo<probabilidad) {
+            for (int i = 0; i < dimension; i++) {
+                if (padre1.getIndividuosIndice(i) < padre2.getIndividuosIndice(i)) {
+                    minimo = padre1.getIndividuosIndice(i);
+                    maximo = padre2.getIndividuosIndice(i);
+                } else {
+                    maximo = padre1.getIndividuosIndice(i);
+                    minimo = padre2.getIndividuosIndice(i);
+                }
+                Int = maximo - minimo;
 
-            double r1 = minimo - (Int * alfa);
-            double r2 = maximo + (Int * alfa);
-            if (r1 < min) {
-                r1 = min;
+                double r1 = minimo - (Int * alfa);
+                double r2 = maximo + (Int * alfa);
+                if (r1 < min) {
+                    r1 = min;
+                }
+                if (r2 > max) {
+                    r2 = max;
+                }
+                hijo1[i] = rand.Randfloat((float) r1, (float) r2);
             }
-            if (r2 > max) {
-                r2 = max;
-            }
-            hijo1[i] = rand.Randfloat((float) r1, (float) r2);
+
+            hijo = new Cromosoma(hijo1);
+            marcados[pos]=true;
+        }else{
+
+            hijo = new Cromosoma(padre1);
         }
-        hijo = new Cromosoma(hijo1, evaluacion(hijo1, funcion));
         return hijo;
     }
 
-    Cromosoma mutacion(Cromosoma hijo, float probabilidadMutacion, int dimension, float min, float max, String funcion) {
+    Cromosoma mutacion(Cromosoma hijo, float probabilidadMutacion, int dimension, float min, float max, String funcion,boolean[] marcados,int pos) {
         double[] aux = new double[dimension];
+        boolean mutado=false;
         for (int i = 0; i < dimension; i++) {
             float muta = rand.Randfloat((float) 0, (float) 1.01);
             if (muta < probabilidadMutacion) {
                 aux[i] = rand.Randfloat(min, max);
+                mutado=true;
             } else {
                 aux[i] = hijo.getIndividuosIndice(i);
             }
         }
-        hijo = new Cromosoma(aux, evaluacion(aux, funcion));
+        if(mutado){
+            hijo = new Cromosoma(aux);
+            marcados[pos]=true;
+        }else{
+            return hijo;
+        }
         return hijo;
+    }
+
+    int evaluados (Cromosoma hijo, boolean [] marcados,int pos,String funcion,int contador){
+        if(marcados[pos]){
+            hijo.setCoste(evaluacion(hijo.getIndividuos(), funcion));
+            contador++;
+        }
+        return contador;
     }
 
     boolean encuentraElite(Cromosoma[] nuevaPoblacion, Cromosoma elite, int poblacion, int dimension) {

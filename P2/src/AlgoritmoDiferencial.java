@@ -7,7 +7,7 @@ public class AlgoritmoDiferencial {
         rand.Set_random(semilla);
     }
 
-    public void EvolucionDiferencial(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int algo, int dimension, int tamTorneo, Float valorMax, Float valorMin, String funcion, String selectorCruce,float factorrecombinacion) {
+    public void EvolucionDiferencial(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int algo, int dimension, int tamTorneo, Float valorMin, Float valorMax, String funcion,float factorrecombinacion) {
 
         Cromosoma mejorCromosomaGlobal = new Cromosoma();
         Cromosoma mejorGeneracion = new Cromosoma();
@@ -17,49 +17,58 @@ public class AlgoritmoDiferencial {
         generaPoblacionInicial(poblacionInicial, poblacion, dimension, valorMin, valorMax, funcion);
         //evaluar en el bucle
         mejorCromosomaGlobal = new Cromosoma(poblacionInicial[mejorCromosoma(poblacionInicial, dimension)]);
+        int[] barajados = new int[poblacion];
        // mejorGeneracion = new Cromosoma(poblacionInicial[mejorCromosoma(poblacionInicial, dimension)]);
         int it = poblacion;
         while (it < evaluaciones) {
-            Cromosoma[] mutados = new Cromosoma[poblacion];
-            for (int i = 0; i < poblacion; i++) {
-                mutados[i] = new Cromosoma(mutacion(poblacionInicial[i], (float) probabilidadMutacion, dimension, valorMin, valorMax, funcion));
-            }
-            for (int k = 0; k < poblacion; k++) {
-                int indiceobjetivo = torneo(mutados, 3, poblacion, "mejor");
-                int aleatorio;
-                int aleatorio2;
-                while (distintos(k, indiceobjetivo, aleatorio2 = rand.Randint(0, poblacion - 1), aleatorio = rand.Randint(0, poblacion - 1))) {
-                    Cromosoma objetivo = new Cromosoma(mutados[indiceobjetivo]);
-                    float F = rand.Randfloat((float) 0, (float) 1.01);
-                    double[] cromfinal = new double[dimension];
-                    for (int j = 0; j < dimension; j++) {
-                        float eleccion = rand.Randfloat((float) 0, (float) 1.01);
-                        if (eleccion < factorrecombinacion) {
-                            cromfinal[j] = objetivo.getIndividuosIndice(j);
-                        } else {
-                            cromfinal[j] = recombinacion(mutados[j].getIndividuosIndice(j), F, mutados[aleatorio].getIndividuosIndice(j), mutados[aleatorio2].getIndividuosIndice(j), valorMax, valorMin);
-                        }
-                    }
-                    double posiblemejor = evaluacion(cromfinal, funcion);
-                    it++;
-                    if (posiblemejor < mutados[k].getCoste()) {
-                        nuevaPoblacion[k] = new Cromosoma(cromfinal, posiblemejor);
-                    } else {
-                        nuevaPoblacion[k] = new Cromosoma(mutados[k]);
-                    }
-                }
-            }
-        }
+//            Cromosoma[] mutados = new Cromosoma[poblacion];
+//            for (int i = 0; i < poblacion; i++) {
+//                mutados[i] = new Cromosoma(mutacion(poblacionInicial[i], (float) probabilidadMutacion, dimension, valorMin, valorMax, funcion));
+//            }
+            algo(poblacion,poblacionInicial,barajados,dimension,factorrecombinacion,funcion,nuevaPoblacion,valorMax,valorMin);
+            it=it+50;
             int mejorpoblacion= mejorCromosoma(nuevaPoblacion,poblacion);
             if(nuevaPoblacion[mejorpoblacion].getCoste()<mejorCromosomaGlobal.getCoste()){
                 mejorCromosomaGlobal=new Cromosoma(nuevaPoblacion[mejorpoblacion]);
             }
+            poblacionInicial=nuevaPoblacion.clone();
+
+
+        }
+
 
 
         System.out.println("El coste es: " + mejorCromosomaGlobal.getCoste());
         System.out.println("El mejor cromosoma es : ");
         for (int i = 0; i < dimension; i++) {
             System.out.println(mejorCromosomaGlobal.getIndividuosIndice(i));
+        }
+    }
+
+    void algo (int poblacion,Cromosoma[] poblacionInicial,int [] barajados,int dimension,float factorrecombinacion,String funcion,Cromosoma [] nuevaPoblacion,float valorMax,float valorMin){
+        for (int k = 0; k < poblacion; k++) {
+            int indiceobjetivo = torneo(poblacionInicial, 3, poblacion, "mejor");
+            barajados=baraja(poblacion);
+            // while (distintos(k, indiceobjetivo, aleatorio2 = rand.Randint(0, poblacion - 1), aleatorio = rand.Randint(0, poblacion - 1))) {
+            Cromosoma objetivo = new Cromosoma(poblacionInicial[indiceobjetivo]);
+            float F = rand.Randfloat((float) 0, (float) 1.01);
+            double[] cromfinal = new double[dimension];
+            for (int j = 0; j < dimension; j++) {
+                float eleccion = rand.Randfloat((float) 0, (float) 1.01);
+                if (eleccion < factorrecombinacion) {
+                    cromfinal[j] = objetivo.getIndividuosIndice(j);
+                } else {
+                    cromfinal[j] = recombinacion(poblacionInicial[j].getIndividuosIndice(j), F, poblacionInicial[barajados[j%poblacion]].getIndividuosIndice(j),poblacionInicial[barajados[((j+1)%poblacion)]].getIndividuosIndice(j), valorMax, valorMin);
+                }
+            }
+            double posiblemejor = evaluacion(cromfinal, funcion);
+           // it++;
+            if (posiblemejor < poblacionInicial[k].getCoste()) {
+                nuevaPoblacion[k] = new Cromosoma(cromfinal, posiblemejor);
+            } else {
+                nuevaPoblacion[k] = new Cromosoma(poblacionInicial[k]);
+            }
+
         }
     }
 
@@ -97,30 +106,7 @@ public class AlgoritmoDiferencial {
         }
         return mejorcromosoma;
     }
-
-    int encuentraObjetivo (Cromosoma[] cromosomas,int a1,int a2,int a3,int a4){
-        int mejor=-1;
-        double mejorcoste=Double.MAX_VALUE;
-        if(cromosomas[a1].getCoste()<mejorcoste){
-            mejor=a1;
-            mejorcoste=cromosomas[a1].getCoste();
-        }
-        if(cromosomas[a2].getCoste()<mejorcoste){
-            mejor=a2;
-            mejorcoste=cromosomas[a2].getCoste();
-        }
-        if(cromosomas[a3].getCoste()<mejorcoste){
-            mejor=a3;
-            mejorcoste=cromosomas[a3].getCoste();
-        }
-        if(cromosomas[a4].getCoste()<mejorcoste){
-            mejor=a4;
-            mejorcoste=cromosomas[a4].getCoste();
-        }
-        return mejor;
-    }
-
-    int torneo(Cromosoma[] cromosomas, int tamTorneo, int poblacion, String selector) {
+        int torneo(Cromosoma[] cromosomas, int tamTorneo, int poblacion, String selector) {
         Cromosoma[] torneoCromosomas = new Cromosoma[tamTorneo];
 //        int[] vector = new int[poblacion];
 //        for (int i = 0; i < poblacion; i++) {
@@ -157,6 +143,23 @@ public class AlgoritmoDiferencial {
                 }
             }
         return false;
+    }
+
+    int [] baraja(int poblacion){
+        int [] barajados =new int[poblacion];
+        for (int i = 0; i < poblacion; i++) {
+            barajados[i]=i;
+        }
+        for (int i = 0; i < poblacion; i++) {
+            int primero = rand.Randint(0,poblacion-1);
+            int segundo;
+            while (primero== (segundo=rand.Randint(0,poblacion-1))){
+            }
+            int aux=barajados[primero];
+            barajados[primero]=barajados[segundo];
+            barajados[segundo]=aux;
+        }
+        return barajados;
     }
 
     double recombinacion (double padre,float f,double ale1,double ale2,double rmax,double rmin){

@@ -46,9 +46,9 @@ public class Main_Clase02_Grupo06 {
       //  }
 
 AlgoritmoEvolutivo algoritmoEvolutivo= new AlgoritmoEvolutivo(1234567);
-algoritmoEvolutivo.Evolutivo(10000,50,0.5,0.5,0,10,2, (float) -1000, 1000F,"griewank","blx", 0.5F);
+//algoritmoEvolutivo.Evolutivo(10000,50,0.7,0.01,0,10,2, (float) -1000, 1000F,"ackley","blx", 0.5F);
 AlgoritmoDiferencial algoritmoDiferencial =new AlgoritmoDiferencial(1234567);
-//algoritmoDiferencial.EvolucionDiferencial(10000,50,0.5,0.5,0,10,2, (float) -1000, 1000F,"griewank","media", 0.5F);
+algoritmoDiferencial.EvolucionDiferencial(10000,50,0.5,0.5,0,10,2, (float) -1000, 1000F,"ackley", 0.5F);
     }
     public static void createLog(String fichero, String texto) {
         try {

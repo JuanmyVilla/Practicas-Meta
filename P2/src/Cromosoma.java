@@ -16,6 +16,9 @@ public class Cromosoma {
         this.individuos = cromosoma.individuos;
         this.coste = cromosoma.coste;
     }
+    public Cromosoma(double[] individuos) {
+        this.individuos = individuos;
+    }
 
     public double[] getIndividuos() {
         return individuos;
