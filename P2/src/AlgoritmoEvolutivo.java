@@ -7,14 +7,14 @@ public class AlgoritmoEvolutivo {
         rand.Set_random(semilla);
     }
 
-    public void Evolutivo(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int k, int dimension, int tamTorneo, Float valorMin, Float valorMax, String funcion, String selectorCruce,float alfa) {
+    public void Evolutivo(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int k, int dimension, int tamTorneo, Float valorMin, Float valorMax, String funcion, String selectorCruce,float alfa,int tipo,double [][] matriz) {
 
         Cromosoma mejorCromosomaGlobal = new Cromosoma();
         Cromosoma elite = new Cromosoma();
         elite.setCoste(Double.MAX_VALUE);
         Cromosoma[] poblacionInicial = new Cromosoma[poblacion];
         Cromosoma[] nuevaPoblacion = new Cromosoma[poblacion];
-        generaPoblacionInicial(poblacionInicial, poblacion, dimension, valorMin, valorMax, funcion);
+        generaPoblacionInicial(poblacionInicial, poblacion, dimension, valorMin, valorMax, funcion,tipo,matriz);
         mejorCromosomaGlobal = new Cromosoma(poblacionInicial[mejorCromosoma(poblacionInicial, dimension)]);
         elite = new Cromosoma(poblacionInicial[mejorCromosoma(poblacionInicial, dimension)]);
         boolean [] marcados = new boolean[poblacion];
@@ -46,7 +46,7 @@ public class AlgoritmoEvolutivo {
 
                     }
                     nuevaPoblacion[nuevosHijos] = new Cromosoma(mutacion(cruzado, (float) probabilidadMutacion, dimension, valorMin, valorMax, funcion,marcados,nuevosHijos));
-                    it=evaluados(nuevaPoblacion[nuevosHijos],marcados,nuevosHijos,funcion,it);
+                    it=evaluados(nuevaPoblacion[nuevosHijos],marcados,nuevosHijos,funcion,it,tipo,matriz);
                     nuevosHijos++;
                 }
             }
@@ -71,14 +71,14 @@ public class AlgoritmoEvolutivo {
         }
     }
 
-    void generaPoblacionInicial(Cromosoma[] poblacion, int tampoblacion, int dimension, Float valorMin, Float valorMax, String funcion) {
+    void generaPoblacionInicial(Cromosoma[] poblacion, int tampoblacion, int dimension, Float valorMin, Float valorMax, String funcion,int tipo,double [][] matriz) {
         for (int i = 0; i < tampoblacion; i++) {
             double[] vinicio = new double[dimension];
             for (int j = 0; j < dimension; j++) {
                 double aux = rand.Randfloat(valorMin, valorMax);
                 vinicio[j] = aux;
             }
-            poblacion[i] = new Cromosoma(vinicio, evaluacion(vinicio, funcion));
+            poblacion[i] = new Cromosoma(vinicio, evaluacion(vinicio, funcion,tipo,matriz));
         }
     }
 
@@ -224,9 +224,9 @@ public class AlgoritmoEvolutivo {
         return hijo;
     }
 
-    int evaluados (Cromosoma hijo, boolean [] marcados,int pos,String funcion,int contador){
+    int evaluados (Cromosoma hijo, boolean [] marcados,int pos,String funcion,int contador,int tipo,double [][] matriz){
         if(marcados[pos]){
-            hijo.setCoste(evaluacion(hijo.getIndividuos(), funcion));
+            hijo.setCoste(evaluacion(hijo.getIndividuos(), funcion,tipo,matriz));
             contador++;
         }
         return contador;
@@ -242,7 +242,6 @@ public class AlgoritmoEvolutivo {
                     encontrado = false;
                     break;
                 }
-
             }
             if (encontrado) {
                 return true;
@@ -251,7 +250,7 @@ public class AlgoritmoEvolutivo {
         return false;
     }
 
-    double evaluacion(double[] solucion, String funcion) {
+    double evaluacion(double[] solucion, String funcion,int tipo, double [][]observaciones) {
 
         double coste = 0.0;
         Evaluacion_Clase02_Grupo06 eva = new Evaluacion_Clase02_Grupo06();
@@ -286,6 +285,9 @@ public class AlgoritmoEvolutivo {
                 break;
             case "griewank":
                 coste = eva.griewank(solucion);
+                break;
+            case "potencia":
+                coste = eva.Potencia(solucion,observaciones,tipo);
                 break;
 
         }

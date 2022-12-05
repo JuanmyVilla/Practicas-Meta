@@ -8,7 +8,6 @@ public class Configurador_Clase02_Grupo06 {
 
     private ArrayList<String> funcion;
     private ArrayList<String> algoritmos;
-
     private ArrayList<Long> semillas;
     private ArrayList<Float> minimos;
     private ArrayList<Float> maximos;
@@ -16,9 +15,7 @@ public class Configurador_Clase02_Grupo06 {
     private int iteraciones;
     private float probabilidad;
     private float porcentajeAleatorio;
-
     private int selector;
-
 
     public Configurador_Clase02_Grupo06(String ruta) {
         funcion = new ArrayList<>();

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Evaluacion_Clase02_Grupo06 {
 
     private double pi = Math.PI;
@@ -127,5 +129,54 @@ public class Evaluacion_Clase02_Grupo06 {
             prod *= Math.cos(solucion[i] / Math.sqrt(i + 1));
         }
         return sum - prod + 1;
+    }
+
+    double MAPE(ArrayList<Double> real, ArrayList<Double> estimation) {
+        int N = real.size();
+        double score;
+        double sum = 0.0;
+        double num = 0.0;
+        for (int i = 0; i < N; i++) {
+            if (real.get(i) != 0) {
+                sum += Math.abs((real.get(i) - estimation.get(i)) / Math.abs(real.get(i)));
+                num++;
+            }
+        }
+        score = sum / num;
+        return score;
+    }
+
+    double RMSE(ArrayList<Double> real, ArrayList<Double> estimation) {
+        int N = real.size();
+        double score;
+        double sum = 0;
+        for (int i = 0; i < N; i++) {
+            sum += Math.pow(real.get(i) - estimation.get(i), 2);
+        }
+        score = Math.sqrt(1.0 / N * sum);
+        return score;
+    }
+
+    double Potencia(double[] a, double[][] observaciones, int tipoError) {
+        double r;
+        ArrayList<Double> real=new ArrayList<>();
+        ArrayList<Double> estimado = new ArrayList<>();
+
+        int filas = observaciones.length;
+        double error = 0;
+
+        for (int i = 0; i < filas; i++) {
+
+            r = observaciones[i][0] * (a[0] + (a[1] * observaciones[i][0]) + (a[2] * observaciones[i][2]) +
+                    (a[3] * observaciones[i][3]) + (a[4] * observaciones[i][4]));
+            estimado.add(r);
+            real.add(observaciones[i][5]);
+        }
+        if (tipoError == 0) {
+            error = MAPE(real, estimado);
+        } else {
+            error = RMSE(real, estimado);
+        }
+        return error;
     }
 }

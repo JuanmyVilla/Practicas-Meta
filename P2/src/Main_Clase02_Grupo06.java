@@ -40,16 +40,20 @@ public class Main_Clase02_Grupo06 {
                             System.out.println(mt.getLog());
                             createLog(fichero, mt.getLog());
                             break;*/
-                  //  }
-            //    }
-          //  }
-      //  }
+        //  }
+        //    }
+        //  }
+        //  }
+        ArchivoDatos datos = new ArchivoDatos("daido-tra.dat");
+        double[][] matriz = new double[6252][6];
+        matriz = datos.getMatriz();
 
-AlgoritmoEvolutivo algoritmoEvolutivo= new AlgoritmoEvolutivo(1234567);
-//algoritmoEvolutivo.Evolutivo(10000,50,0.7,0.01,0,10,2, (float) -1000, 1000F,"ackley","blx", 0.5F);
-AlgoritmoDiferencial algoritmoDiferencial =new AlgoritmoDiferencial(1234567);
-algoritmoDiferencial.EvolucionDiferencial(10000,50,0.5,0.5,0,10,2, (float) -1000, 1000F,"ackley", 0.5F);
+        AlgoritmoEvolutivo algoritmoEvolutivo = new AlgoritmoEvolutivo(77367663);
+        algoritmoEvolutivo.Evolutivo(10000, 50, 0.7, 0.01, 0, 10, 2, (float) -1, 1F, "potencia", "blx", 0.5F, 0, matriz);
+        AlgoritmoDiferencial algoritmoDiferencial = new AlgoritmoDiferencial(77367663);
+        algoritmoDiferencial.EvolucionDiferencial(10000, 50, 10, (float) -1, 1F, "potencia", 0.5F, 0, matriz);
     }
+
     public static void createLog(String fichero, String texto) {
         try {
             File file = new File(fichero);
