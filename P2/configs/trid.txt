@@ -1,0 +1,3 @@
+minimo=-1000
+maximo=1000
+

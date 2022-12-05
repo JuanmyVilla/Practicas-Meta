@@ -1,0 +1,14 @@
+INICIO EJECUCION: Algoritmo Diferencial  
+MEJOR COSTE: 45.582517945966565MEJOR CROMOSOMA:
+- cromosoma[0] = 52.39818057959548
+- cromosoma[1] = -233.40202504019268
+- cromosoma[2] = 94.46467638045024
+- cromosoma[3] = -263.1836485211324
+- cromosoma[4] = 10.092961743452577
+- cromosoma[5] = -150.50707745175515
+- cromosoma[6] = -53.97463965708059
+- cromosoma[7] = 105.07571293738468
+- cromosoma[8] = -78.55069930073347
+- cromosoma[9] = 6.336402656215234
+Tiempo de Ejecucion: 10 ms
+

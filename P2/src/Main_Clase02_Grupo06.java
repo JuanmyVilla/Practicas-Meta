@@ -4,54 +4,49 @@ import java.io.PrintWriter;
 
 public class Main_Clase02_Grupo06 {
     public static void main(String[] args) {
-//        Configurador_Clase02_Grupo06 config = new Configurador_Clase02_Grupo06(args[0]);
-//        int dimension = config.getDimension();
-//        int iteraciones = config.getIteraciones();
-//        float probatilidad = config.getProbabilidad();
-//        float porcentaje = config.getPorcentajeAleatorio();
-//        int selector= config.getSelector();
-//        for (int j = 0; j < config.getFuncion().size(); j++) {
-//            for (int k = 0; k < config.getSemillas().size(); k++) {
-//                for (int i = 0; i < config.getAlgoritmos().size(); i++) {
-//                    String fichero = "logs/" + config.getAlgoritmos().get(i) + "_" + config.getFuncion().get(j) + "_" + config.getSemillas().get(k) + ".txt";
-//
-//                    switch ((config.getAlgoritmos().get(i))) {
-                       /* case "bl3":
-                            AlgBusquedaLocal_Clase02_Grupo06 bl = new AlgBusquedaLocal_Clase02_Grupo06(config.getSemillas().get(k));
-                            bl.busquedalocal(iteraciones, probatilidad, porcentaje, 3, dimension, config.getMinimos().get(j), config.getMaximos().get(j), config.getFuncion().get(j));
-                            System.out.println(bl.getLog());
-                            createLog(fichero, bl.getLog());
-                            break;
-                        case "blk":
-                            AlgBusquedaLocal_Clase02_Grupo06 blk = new AlgBusquedaLocal_Clase02_Grupo06(config.getSemillas().get(k));
-                            blk.busquedalocal(iteraciones, probatilidad, porcentaje, 0, dimension, config.getMinimos().get(j), config.getMaximos().get(j), config.getFuncion().get(j));
-                            System.out.println(blk.getLog());
-                            createLog(fichero, blk.getLog());
-                            break;
-                        case "tabu":
-                            AlgBusquedaTabu_Clase02_Grupo06 bt = new AlgBusquedaTabu_Clase02_Grupo06(config.getSemillas().get(k));
-                            bt.busquedatabu(iteraciones, probatilidad, porcentaje, selector, dimension, config.getMinimos().get(j), config.getMaximos().get(j), config.getFuncion().get(j), 5, 10);
-                            System.out.println(bt.getLog());
-                            createLog(fichero, bt.getLog());
-                            break;
-                        case "vns":
-                            AlgMultiarranque_Clase02_Grupo06 mt = new AlgMultiarranque_Clase02_Grupo06(config.getSemillas().get(k));
-                            mt.multiarranque(iteraciones, probatilidad, porcentaje, selector, dimension, config.getMinimos().get(j), config.getMaximos().get(j), config.getFuncion().get(j), 5, 10);
-                            System.out.println(mt.getLog());
-                            createLog(fichero, mt.getLog());
-                            break;*/
-        //  }
-        //    }
-        //  }
-        //  }
         ArchivoDatos datos = new ArchivoDatos("daido-tra.dat");
-        double[][] matriz = new double[6252][6];
-        matriz = datos.getMatriz();
+        Configurador_Clase02_Grupo06 config = new Configurador_Clase02_Grupo06(args[0]);
+        for (int j = 0; j < config.getFuncion().size(); j++) {
+            config.leefuncion(j);
+            for (int k = 0; k < config.getSemillas().size(); k++) {
+                for (int i = 0; i < config.getAlgoritmos().size(); i++) {
+                    for (int l = 0; l < config.getSelectorMAPE().size(); l++) {
+                        String fichero = nombrelogs(config, i, j, k, l);
+                        switch ((config.getAlgoritmos().get(i))) {
+                            case "evolutivoMedia":
+                                AlgoritmoEvolutivo algoritmoEvolutivoMedia = new AlgoritmoEvolutivo(config.getSemillas().get(k));
+                                algoritmoEvolutivoMedia.Evolutivo(config.getEvaluaciones(), config.getPoblacion(), config.getProbabilidadcruce(), config.getProbabilidadmutacion(), config.getDimension(), config.getTamanotorneo(), config.getMinimos(), config.getMaximos(), config.getFuncion().get(j), config.getSelectorcruce().get(0), config.getAlfa(), config.getSelectorMAPE().get(l), datos.getMatriz());
+                                System.out.println(algoritmoEvolutivoMedia.getLog());
+                                createLog(fichero, algoritmoEvolutivoMedia.getLog());
+                                break;
+                            case "evolutivoBLK":
+                                AlgoritmoEvolutivo algoritmoEvolutivo = new AlgoritmoEvolutivo(config.getSemillas().get(k));
+                                algoritmoEvolutivo.Evolutivo(config.getEvaluaciones(), config.getPoblacion(), config.getProbabilidadcruce(), config.getProbabilidadmutacion(), config.getDimension(), config.getTamanotorneo(), config.getMinimos(), config.getMaximos(), config.getFuncion().get(j), config.getSelectorcruce().get(1), config.getAlfa(), config.getSelectorMAPE().get(l), datos.getMatriz());
+                                System.out.println(algoritmoEvolutivo.getLog());
+                                createLog(fichero, algoritmoEvolutivo.getLog());
+                                break;
+                            case "diferencial":
+                                AlgoritmoDiferencial algoritmoDiferencial = new AlgoritmoDiferencial(config.getSemillas().get(k));
+                                algoritmoDiferencial.EvolucionDiferencial(config.getEvaluaciones(), config.getPoblacion(), config.getDimension(), config.getMinimos(), config.getMaximos(), config.getFuncion().get(j), config.getFactorRecombinacion(), config.getSelectorMAPE().get(l), datos.getMatriz());
+                                System.out.println(algoritmoDiferencial.getLog());
+                                createLog(fichero, algoritmoDiferencial.getLog());
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-        AlgoritmoEvolutivo algoritmoEvolutivo = new AlgoritmoEvolutivo(77367663);
-        algoritmoEvolutivo.Evolutivo(10000, 50, 0.7, 0.01, 0, 10, 2, (float) -1, 1F, "potencia", "blx", 0.5F, 0, matriz);
-        AlgoritmoDiferencial algoritmoDiferencial = new AlgoritmoDiferencial(77367663);
-        algoritmoDiferencial.EvolucionDiferencial(10000, 50, 10, (float) -1, 1F, "potencia", 0.5F, 0, matriz);
+    public static String nombrelogs(Configurador_Clase02_Grupo06 config, int algoritmo, int funcion, int semilla, int mape) {
+        String solucion = "";
+        if (config.getFuncion().get(funcion) .equals("potencia")) {
+            solucion = "logs/" + config.getSelectorMAPE().get(mape) + "_" + config.getAlgoritmos().get(algoritmo) + "_" + config.getSemillas().get(semilla) + ".txt";
+            return solucion;
+        }
+        solucion = "logs/" + config.getAlgoritmos().get(algoritmo) + "_" + config.getFuncion().get(funcion) + "_" + config.getSemillas().get(semilla) + ".txt";
+
+        return solucion;
     }
 
     public static void createLog(String fichero, String texto) {

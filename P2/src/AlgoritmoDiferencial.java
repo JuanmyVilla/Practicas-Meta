@@ -1,20 +1,22 @@
 public class AlgoritmoDiferencial {
     private final Randon_Clase02_Grupo06 rand;
-    //  private StringBuilder log;
+    private StringBuilder log;
 
-    public AlgoritmoDiferencial(long semilla) {//, StringBuilder log) {
+    public AlgoritmoDiferencial(long semilla) {
         rand = new Randon_Clase02_Grupo06();
         rand.Set_random(semilla);
+        log=new StringBuilder();
     }
 
-    public void EvolucionDiferencial(int evaluaciones, int poblacion,int dimension, Float valorMin, Float valorMax, String funcion,float factorrecombinacion,int tipo,double [][] observaciones) {
-
+    public void EvolucionDiferencial(int evaluaciones, int poblacion,int dimension, Float valorMin, Float valorMax, String funcion,float factorrecombinacion,String tipoMape,double [][] observaciones) {
+        log.append("INICIO EJECUCION: Algoritmo Diferencial  \n");
+        long inicio2E2P = System.currentTimeMillis();
         Cromosoma mejorCromosomaGlobal = new Cromosoma();
         Cromosoma mejorGeneracion = new Cromosoma();
         mejorGeneracion.setCoste(Double.MAX_VALUE);
         Cromosoma[] poblacionInicial = new Cromosoma[poblacion];
         Cromosoma[] nuevaPoblacion = new Cromosoma[poblacion];
-        generaPoblacionInicial(poblacionInicial, poblacion, dimension, valorMin, valorMax, funcion,tipo,observaciones);
+        generaPoblacionInicial(poblacionInicial, poblacion, dimension, valorMin, valorMax, funcion,tipoMape,observaciones);
         //evaluar en el bucle
         mejorCromosomaGlobal = new Cromosoma(poblacionInicial[mejorCromosoma(poblacionInicial, dimension)]);
         int[] barajados = new int[poblacion];
@@ -35,7 +37,7 @@ public class AlgoritmoDiferencial {
                         cromfinal[j] = recombinacion(poblacionInicial[j].getIndividuosIndice(j), F, poblacionInicial[barajados[j%poblacion]].getIndividuosIndice(j),poblacionInicial[barajados[((j+1)%poblacion)]].getIndividuosIndice(j), valorMax, valorMin);
                     }
                 }
-                double posiblemejor = evaluacion(cromfinal, funcion,tipo,observaciones);
+                double posiblemejor = evaluacion(cromfinal, funcion,tipoMape,observaciones);
                  it++;
                 if (posiblemejor < poblacionInicial[k].getCoste()) {
                     nuevaPoblacion[k] = new Cromosoma(cromfinal, posiblemejor);
@@ -49,21 +51,25 @@ public class AlgoritmoDiferencial {
             }
             poblacionInicial=nuevaPoblacion.clone();
         }
-        System.out.println("El coste es: " + mejorCromosomaGlobal.getCoste());
-        System.out.println("El mejor cromosoma es : ");
+
+        long final2E2P = System.currentTimeMillis();
+        // Imprimimos por pantalla el mejor coste y el mejor cromosoma que hemos encontrado.
+        log.append("MEJOR COSTE: " + mejorCromosomaGlobal.getCoste());
+        log.append("MEJOR CROMOSOMA:" + "\n");
         for (int i = 0; i < dimension; i++) {
-            System.out.println(mejorCromosomaGlobal.getIndividuosIndice(i));
+            log.append("- cromosoma[" + i + "] = " + mejorCromosomaGlobal.getIndividuosIndice(i) + "\n");
         }
+        log.append("Tiempo de Ejecucion: " + (final2E2P - inicio2E2P) + " ms\n");
     }
 
-    void generaPoblacionInicial(Cromosoma[] poblacion, int tampoblacion, int dimension, Float valorMin, Float valorMax, String funcion,int tipo, double [][] observaciones) {
+    void generaPoblacionInicial(Cromosoma[] poblacion, int tampoblacion, int dimension, Float valorMin, Float valorMax, String funcion,String tipoMape, double [][] observaciones) {
         for (int i = 0; i < tampoblacion; i++) {
             double[] vinicio = new double[dimension];
             for (int j = 0; j < dimension; j++) {
                 double aux = rand.Randfloat(valorMin, valorMax);
                 vinicio[j] = aux;
             }
-            poblacion[i] = new Cromosoma(vinicio, evaluacion(vinicio, funcion,tipo,observaciones));
+            poblacion[i] = new Cromosoma(vinicio, evaluacion(vinicio, funcion,tipoMape,observaciones));
         }
     }
 
@@ -199,7 +205,7 @@ public class AlgoritmoDiferencial {
         return false;
     }
 
-    double evaluacion(double[] solucion, String funcion,int tipo,double [][] observaciones) {
+    double evaluacion(double[] solucion, String funcion,String tipo,double [][] observaciones) {
 
         double coste = 0.0;
         Evaluacion_Clase02_Grupo06 eva = new Evaluacion_Clase02_Grupo06();
@@ -242,5 +248,8 @@ public class AlgoritmoDiferencial {
         return coste;
     }
 
+    public String getLog() {
+        return log.toString();
+    }
 
 }

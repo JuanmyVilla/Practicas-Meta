@@ -157,7 +157,7 @@ public class Evaluacion_Clase02_Grupo06 {
         return score;
     }
 
-    double Potencia(double[] a, double[][] observaciones, int tipoError) {
+    double Potencia(double[] a, double[][] observaciones, String tipoError) {
         double r;
         ArrayList<Double> real=new ArrayList<>();
         ArrayList<Double> estimado = new ArrayList<>();
@@ -172,7 +172,7 @@ public class Evaluacion_Clase02_Grupo06 {
             estimado.add(r);
             real.add(observaciones[i][5]);
         }
-        if (tipoError == 0) {
+        if (tipoError == "MAPE") {
             error = MAPE(real, estimado);
         } else {
             error = RMSE(real, estimado);

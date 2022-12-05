@@ -1,0 +1,3 @@
+minimo=-5
+maximo=10
+

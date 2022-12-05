@@ -1,0 +1,3 @@
+minimo=-500
+maximo=500
+
