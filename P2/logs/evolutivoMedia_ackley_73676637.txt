@@ -1,6 +1,7 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
  - Cruce usado : MEDIA
-MEJOR COSTE: 20.587139062698828MEJOR CROMOSOMA:
+MEJOR COSTE: 20.587139062698828
+MEJOR CROMOSOMA:
 - cromosoma[0] = 8047.951171875
 - cromosoma[1] = -20686.16015625
 - cromosoma[2] = 9177.892578125
@@ -11,5 +12,5 @@ MEJOR COSTE: 20.587139062698828MEJOR CROMOSOMA:
 - cromosoma[7] = -24573.060546875
 - cromosoma[8] = 5671.1708984375
 - cromosoma[9] = 22670.87109375
-Tiempo de Ejecucion: 10 ms
+Tiempo de Ejecucion: 11 ms
 

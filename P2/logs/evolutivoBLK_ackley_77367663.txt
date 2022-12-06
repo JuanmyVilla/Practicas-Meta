@@ -1,6 +1,7 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
  - Cruce usado : BLX
-MEJOR COSTE: 20.407925423501325MEJOR CROMOSOMA:
+MEJOR COSTE: 20.407925423501325
+MEJOR CROMOSOMA:
 - cromosoma[0] = -29244.001953125
 - cromosoma[1] = 18787.8359375
 - cromosoma[2] = 21662.015625
@@ -11,5 +12,5 @@ MEJOR COSTE: 20.407925423501325MEJOR CROMOSOMA:
 - cromosoma[7] = 3783.935546875
 - cromosoma[8] = -22711.0078125
 - cromosoma[9] = 13794.0615234375
-Tiempo de Ejecucion: 12 ms
+Tiempo de Ejecucion: 11 ms
 

@@ -69,7 +69,7 @@ public class AlgoritmoEvolutivo {
         }
         long final2E2P = System.currentTimeMillis();
         // Imprimimos por pantalla el mejor coste y el mejor cromosoma que hemos encontrado.
-        log.append("MEJOR COSTE: " + mejorCromosomaGlobal.getCoste());
+        log.append("MEJOR COSTE: " + mejorCromosomaGlobal.getCoste()+"\n");
         log.append("MEJOR CROMOSOMA:" + "\n");
         for (int i = 0; i < dimension; i++) {
             log.append("- cromosoma[" + i + "] = " + mejorCromosomaGlobal.getIndividuosIndice(i) + "\n");

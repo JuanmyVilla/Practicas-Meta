@@ -12,15 +12,14 @@ public class AlgoritmoDiferencial {
         log.append("INICIO EJECUCION: Algoritmo Diferencial  \n");
         long inicio2E2P = System.currentTimeMillis();
         Cromosoma mejorCromosomaGlobal = new Cromosoma();
-        Cromosoma mejorGeneracion = new Cromosoma();
-        mejorGeneracion.setCoste(Double.MAX_VALUE);
         Cromosoma[] poblacionInicial = new Cromosoma[poblacion];
         Cromosoma[] nuevaPoblacion = new Cromosoma[poblacion];
+        int[] barajados = new int[poblacion];
+        int it = poblacion;
         generaPoblacionInicial(poblacionInicial, poblacion, dimension, valorMin, valorMax, funcion,tipoMape,observaciones);
         //evaluar en el bucle
         mejorCromosomaGlobal = new Cromosoma(poblacionInicial[mejorCromosoma(poblacionInicial, dimension)]);
-        int[] barajados = new int[poblacion];
-        int it = poblacion;
+
         while (it < evaluaciones) {
               for (int k = 0; k < poblacion; k++) {
                 int indiceobjetivo = torneo(poblacionInicial, 3, poblacion, "mejor");
@@ -54,7 +53,7 @@ public class AlgoritmoDiferencial {
 
         long final2E2P = System.currentTimeMillis();
         // Imprimimos por pantalla el mejor coste y el mejor cromosoma que hemos encontrado.
-        log.append("MEJOR COSTE: " + mejorCromosomaGlobal.getCoste());
+        log.append("MEJOR COSTE: " + mejorCromosomaGlobal.getCoste()+"\n");
         log.append("MEJOR CROMOSOMA:" + "\n");
         for (int i = 0; i < dimension; i++) {
             log.append("- cromosoma[" + i + "] = " + mejorCromosomaGlobal.getIndividuosIndice(i) + "\n");
