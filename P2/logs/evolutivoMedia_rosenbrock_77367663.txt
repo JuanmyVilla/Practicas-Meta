@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: rosenbrock
  - Cruce usado : MEDIA
 MEJOR COSTE: 315202.999428894
 MEJOR CROMOSOMA:
@@ -12,5 +13,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = -0.10094594955444336
 - cromosoma[8] = -0.9014401435852051
 - cromosoma[9] = 5.499872207641602
-Tiempo de Ejecucion: 1 ms
+Tiempo de Ejecucion: 2 ms
 

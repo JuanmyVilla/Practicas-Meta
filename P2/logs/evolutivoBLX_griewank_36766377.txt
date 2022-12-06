@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: griewank
  - Cruce usado : BLX
 MEJOR COSTE: 266.3099540671619
 MEJOR CROMOSOMA:
@@ -12,5 +13,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 316.8763427734375
 - cromosoma[8] = -642.5782470703125
 - cromosoma[9] = -49.72509765625
-Tiempo de Ejecucion: 7 ms
+Tiempo de Ejecucion: 6 ms
 

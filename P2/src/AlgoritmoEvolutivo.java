@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class AlgoritmoEvolutivo {
     private final Randon_Clase02_Grupo06 rand;
     private StringBuilder log;
-
     public AlgoritmoEvolutivo(long semilla) {
         rand = new Randon_Clase02_Grupo06();
         rand.Set_random(semilla);
@@ -13,6 +12,11 @@ public class AlgoritmoEvolutivo {
 
     public void Evolutivo(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int dimension, int tamTorneo, Float valorMin, Float valorMax, String funcion, String selectorCruce, float alfa, String tipoMape, ArrayList<double[]> matriz) {
         log.append("INICIO EJECUCION: Algoritmo Evolutivo  \n");
+        if (funcion.equals("potencia")) {
+            log.append("Funcion: " + tipoMape + "\n");
+        } else {
+            log.append("Funcion: " + funcion + "\n");
+        }
         log.append(" - Cruce usado : " + selectorCruce + "\n");
         long inicio2E2P = System.currentTimeMillis();
         Cromosoma mejorCromosomaGlobal = new Cromosoma();

@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: rosenbrock
  - Cruce usado : MEDIA
 MEJOR COSTE: 66928.62287681563
 MEJOR CROMOSOMA:

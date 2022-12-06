@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: michalewicz
  - Cruce usado : BLX
 MEJOR COSTE: -2.0822470121881764
 MEJOR CROMOSOMA:

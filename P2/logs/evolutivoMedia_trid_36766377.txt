@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: trid
  - Cruce usado : MEDIA
 MEJOR COSTE: 440979.9628147045
 MEJOR CROMOSOMA:
@@ -12,5 +13,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 328.0535583496094
 - cromosoma[8] = 46.373291015625
 - cromosoma[9] = -150.17935180664062
-Tiempo de Ejecucion: 2 ms
+Tiempo de Ejecucion: 1 ms
 

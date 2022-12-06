@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: rosenbrock
  - Cruce usado : BLX
 MEJOR COSTE: 193878.24995770265
 MEJOR CROMOSOMA:

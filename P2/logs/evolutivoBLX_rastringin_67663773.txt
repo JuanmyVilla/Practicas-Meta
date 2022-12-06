@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: rastringin
  - Cruce usado : BLX
 MEJOR COSTE: 3346.4273037112375
 MEJOR CROMOSOMA:

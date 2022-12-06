@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: rotated
  - Cruce usado : BLX
 MEJOR COSTE: 2.6049524293137684E82
 MEJOR CROMOSOMA:

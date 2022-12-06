@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: trid
  - Cruce usado : BLX
 MEJOR COSTE: 270310.19746901933
 MEJOR CROMOSOMA:

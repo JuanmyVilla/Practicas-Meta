@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: michalewicz
  - Cruce usado : MEDIA
 MEJOR COSTE: -1.6641102134771246
 MEJOR CROMOSOMA:

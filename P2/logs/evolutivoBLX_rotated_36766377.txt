@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: rotated
  - Cruce usado : BLX
 MEJOR COSTE: 4.7174507098863203E76
 MEJOR CROMOSOMA:
@@ -12,5 +13,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 7618.84765625
 - cromosoma[8] = -40916.65625
 - cromosoma[9] = -26853.29296875
-Tiempo de Ejecucion: 2 ms
+Tiempo de Ejecucion: 3 ms
 

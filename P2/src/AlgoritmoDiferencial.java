@@ -12,7 +12,11 @@ public class AlgoritmoDiferencial {
 
     public void EvolucionDiferencial(int evaluaciones, int poblacion, int dimension, Float valorMin, Float valorMax, String funcion, float factorrecombinacion, String tipoMape, ArrayList<double[]> observaciones) {
         log.append("INICIO EJECUCION: Algoritmo Diferencial  \n");
-        log.append("Funcion: " + funcion +  "\n");
+        if (funcion.equals("potencia")) {
+            log.append("Funcion: " + tipoMape + "\n");
+        } else {
+            log.append("Funcion: " + funcion + "\n");
+        }
         long inicio2E2P = System.currentTimeMillis();
         Cromosoma mejorCromosomaGlobal = new Cromosoma();
         Cromosoma[] poblacionInicial = new Cromosoma[poblacion];
@@ -62,7 +66,7 @@ public class AlgoritmoDiferencial {
         log.append("Tiempo de Ejecucion: " + (final2E2P - inicio2E2P) + " ms\n");
     }
 
-    void generaPoblacionInicial(Cromosoma[] poblacion, int tampoblacion, int dimension, Float valorMin, Float valorMax, String funcion, String tipoMape, ArrayList<double[]>observaciones) {
+    void generaPoblacionInicial(Cromosoma[] poblacion, int tampoblacion, int dimension, Float valorMin, Float valorMax, String funcion, String tipoMape, ArrayList<double[]> observaciones) {
         for (int i = 0; i < tampoblacion; i++) {
             double[] vinicio = new double[dimension];
             for (int j = 0; j < dimension; j++) {
@@ -164,7 +168,6 @@ public class AlgoritmoDiferencial {
             }
         }
         return nuevo;
-
     }
 
     boolean distintos(int a1, int a2, int a3, int a4) {

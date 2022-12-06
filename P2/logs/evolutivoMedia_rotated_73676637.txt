@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: rotated
  - Cruce usado : MEDIA
 MEJOR COSTE: 1.810110845972143E76
 MEJOR CROMOSOMA:

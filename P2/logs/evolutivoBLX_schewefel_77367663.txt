@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: schewefel
  - Cruce usado : BLX
 MEJOR COSTE: 2310.1628347264405
 MEJOR CROMOSOMA:

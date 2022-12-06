@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: dixon
  - Cruce usado : BLX
 MEJOR COSTE: 3.67454248823389E9
 MEJOR CROMOSOMA:

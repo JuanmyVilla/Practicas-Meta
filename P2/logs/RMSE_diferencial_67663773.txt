@@ -1,5 +1,5 @@
 INICIO EJECUCION: Algoritmo Diferencial  
-Funcion: potencia
+Funcion: RMSE
 MEJOR COSTE: 161.9274157809586
 MEJOR CROMOSOMA:
 - cromosoma[0] = -0.2841097574771962
@@ -12,5 +12,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 0.23655563101191912
 - cromosoma[8] = -1.0
 - cromosoma[9] = -0.15500867087360604
-Tiempo de Ejecucion: 1151 ms
+Tiempo de Ejecucion: 1136 ms
 

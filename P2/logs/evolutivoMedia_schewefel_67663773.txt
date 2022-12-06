@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: schewefel
  - Cruce usado : MEDIA
 MEJOR COSTE: 3286.3370553263903
 MEJOR CROMOSOMA:
@@ -12,5 +13,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = -313.040283203125
 - cromosoma[8] = -347.29345703125
 - cromosoma[9] = 233.60179138183594
-Tiempo de Ejecucion: 7 ms
+Tiempo de Ejecucion: 8 ms
 

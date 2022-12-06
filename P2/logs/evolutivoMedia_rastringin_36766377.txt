@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: rastringin
  - Cruce usado : MEDIA
 MEJOR COSTE: 3378.4199813656123
 MEJOR CROMOSOMA:
@@ -12,5 +13,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 16.770097732543945
 - cromosoma[8] = -35.76438331604004
 - cromosoma[9] = -7.677167892456055
-Tiempo de Ejecucion: 6 ms
+Tiempo de Ejecucion: 8 ms
 

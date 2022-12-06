@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: ackley
  - Cruce usado : MEDIA
 MEJOR COSTE: 21.035438434007236
 MEJOR CROMOSOMA:
@@ -12,5 +13,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = -7592.01171875
 - cromosoma[8] = -23590.037109375
 - cromosoma[9] = -7676.111328125
-Tiempo de Ejecucion: 12 ms
+Tiempo de Ejecucion: 9 ms
 

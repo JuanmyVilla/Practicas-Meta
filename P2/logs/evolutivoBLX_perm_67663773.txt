@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
+Funcion: perm
  - Cruce usado : BLX
 MEJOR COSTE: 9.591225795235398E38
 MEJOR CROMOSOMA:
@@ -12,5 +13,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = -49.911109924316406
 - cromosoma[8] = -50.24441146850586
 - cromosoma[9] = -33.4052848815918
-Tiempo de Ejecucion: 86 ms
+Tiempo de Ejecucion: 89 ms
 
