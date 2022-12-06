@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Diferencial  
+Funcion: rotated
 MEJOR COSTE: 5.072849527664538E72
 MEJOR CROMOSOMA:
 - cromosoma[0] = -0.22922743633837758

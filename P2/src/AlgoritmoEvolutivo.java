@@ -1,4 +1,5 @@
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 
 public class AlgoritmoEvolutivo {
     private final Randon_Clase02_Grupo06 rand;
@@ -10,7 +11,7 @@ public class AlgoritmoEvolutivo {
         log = new StringBuilder();
     }
 
-    public void Evolutivo(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int dimension, int tamTorneo, Float valorMin, Float valorMax, String funcion, String selectorCruce, float alfa, String tipoMape, double[][] matriz) {
+    public void Evolutivo(int evaluaciones, int poblacion, double probabilidadCruce, double probabilidadMutacion, int dimension, int tamTorneo, Float valorMin, Float valorMax, String funcion, String selectorCruce, float alfa, String tipoMape, ArrayList<double[]> matriz) {
         log.append("INICIO EJECUCION: Algoritmo Evolutivo  \n");
         log.append(" - Cruce usado : " + selectorCruce + "\n");
         long inicio2E2P = System.currentTimeMillis();
@@ -52,9 +53,7 @@ public class AlgoritmoEvolutivo {
                     nuevaPoblacion[nuevosHijos] = new Cromosoma(mutacion(cruzado, (float) probabilidadMutacion, dimension, valorMin, valorMax, funcion, marcados, nuevosHijos));
                     it = evaluados(nuevaPoblacion[nuevosHijos], marcados, nuevosHijos, funcion, it, tipoMape, matriz);
                     nuevosHijos++;
-
                 }
-
             }
             boolean encontrado = encuentraElite(nuevaPoblacion, elite, poblacion, dimension);
             if (!encontrado) {
@@ -71,7 +70,7 @@ public class AlgoritmoEvolutivo {
         }
         long final2E2P = System.currentTimeMillis();
         // Imprimimos por pantalla el mejor coste y el mejor cromosoma que hemos encontrado.
-        log.append("MEJOR COSTE: " + mejorCromosomaGlobal.getCoste()+"\n");
+        log.append("MEJOR COSTE: " + mejorCromosomaGlobal.getCoste() + "\n");
         log.append("MEJOR CROMOSOMA:" + "\n");
         for (int i = 0; i < dimension; i++) {
             log.append("- cromosoma[" + i + "] = " + mejorCromosomaGlobal.getIndividuosIndice(i) + "\n");
@@ -79,7 +78,7 @@ public class AlgoritmoEvolutivo {
         log.append("Tiempo de Ejecucion: " + (final2E2P - inicio2E2P) + " ms\n");
     }
 
-    void generaPoblacionInicial(Cromosoma[] poblacion, int tampoblacion, int dimension, Float valorMin, Float valorMax, String funcion, String tipoMape, double[][] matriz) {
+    void generaPoblacionInicial(Cromosoma[] poblacion, int tampoblacion, int dimension, Float valorMin, Float valorMax, String funcion, String tipoMape, ArrayList<double[]> matriz) {
         for (int i = 0; i < tampoblacion; i++) {
             double[] vinicio = new double[dimension];
             for (int j = 0; j < dimension; j++) {
@@ -92,14 +91,13 @@ public class AlgoritmoEvolutivo {
 
     int mejorCromosoma(Cromosoma[] cromosoma, int poblacion) {
         int mejorcromosoma = 0;
-        double aux =cromosoma[0].getCoste();
+        double aux = cromosoma[0].getCoste();
         for (int i = 1; i < poblacion; i++) {
             if (cromosoma[i].getCoste() < aux) {
                 aux = cromosoma[i].getCoste();
                 mejorcromosoma = i;
             }
         }
-
         return mejorcromosoma;
     }
 
@@ -159,7 +157,6 @@ public class AlgoritmoEvolutivo {
             for (int i = 0; i < dimension; i++) {
                 hijo1[i] = (aux[i] + aux2[i]) / 2;
             }
-
             hijo = new Cromosoma(hijo1);
             marcados[pos] = true;
         } else {
@@ -196,11 +193,9 @@ public class AlgoritmoEvolutivo {
                 }
                 hijo1[i] = rand.Randfloat((float) r1, (float) r2);
             }
-
             hijo = new Cromosoma(hijo1);
             marcados[pos] = true;
         } else {
-
             hijo = new Cromosoma(padre1);
         }
         return hijo;
@@ -227,7 +222,7 @@ public class AlgoritmoEvolutivo {
         return hijo;
     }
 
-    int evaluados(Cromosoma hijo, boolean[] marcados, int pos, String funcion, int contador, String tipo, double[][] matriz) {
+    int evaluados(Cromosoma hijo, boolean[] marcados, int pos, String funcion, int contador, String tipo, ArrayList<double[]> matriz) {
         if (marcados[pos]) {
             hijo.setCoste(evaluacion(hijo.getIndividuos(), funcion, tipo, matriz));
             contador++;
@@ -253,11 +248,9 @@ public class AlgoritmoEvolutivo {
         return false;
     }
 
-    double evaluacion(double[] solucion, String funcion, String tipo, double[][] observaciones) {
-
+    double evaluacion(double[] solucion, String funcion, String tipo, ArrayList<double[]> observaciones) {
         double coste = 0.0;
         Evaluacion_Clase02_Grupo06 eva = new Evaluacion_Clase02_Grupo06();
-
         switch (funcion) {
             case "ackley":
                 coste = eva.ackley(solucion);
@@ -292,7 +285,6 @@ public class AlgoritmoEvolutivo {
             case "potencia":
                 coste = eva.Potencia(solucion, observaciones, tipo);
                 break;
-
         }
         return coste;
     }

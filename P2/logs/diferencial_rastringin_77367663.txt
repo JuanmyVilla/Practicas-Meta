@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Diferencial  
+Funcion: rastringin
 MEJOR COSTE: 1209.2216825266585
 MEJOR CROMOSOMA:
 - cromosoma[0] = -16.93255183862768

@@ -157,22 +157,22 @@ public class Evaluacion_Clase02_Grupo06 {
         return score;
     }
 
-    double Potencia(double[] a, double[][] observaciones, String tipoError) {
+    double Potencia(double[] a, ArrayList<double[]> observaciones, String tipoError) {
         double r;
         ArrayList<Double> real=new ArrayList<>();
         ArrayList<Double> estimado = new ArrayList<>();
 
-        int filas = observaciones.length;
+        int filas = observaciones.size();
         double error = 0;
 
         for (int i = 0; i < filas; i++) {
 
-            r = observaciones[i][0] * (a[0] + (a[1] * observaciones[i][0]) + (a[2] * observaciones[i][2]) +
-                    (a[3] * observaciones[i][3]) + (a[4] * observaciones[i][4]));
+            r = observaciones.get(i)[0] * (a[0] + (a[1] * observaciones.get(i)[1]) + (a[2] * observaciones.get(i)[2]) +
+                    (a[3] * observaciones.get(i)[3]) + (a[4] * observaciones.get(i)[4]));
             estimado.add(r);
-            real.add(observaciones[i][5]);
+            real.add(observaciones.get(i)[5]);
         }
-        if (tipoError == "MAPE") {
+        if (tipoError.equals("MAPE")) {
             error = MAPE(real, estimado);
         } else {
             error = RMSE(real, estimado);

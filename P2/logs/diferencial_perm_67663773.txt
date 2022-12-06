@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Diferencial  
+Funcion: perm
 MEJOR COSTE: 1.1326285291620978E35
 MEJOR CROMOSOMA:
 - cromosoma[0] = -37.75809391089237
@@ -11,5 +12,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 39.51142068567512
 - cromosoma[8] = 21.497789338977896
 - cromosoma[9] = -3.4757842315803194
-Tiempo de Ejecucion: 79 ms
+Tiempo de Ejecucion: 93 ms
 

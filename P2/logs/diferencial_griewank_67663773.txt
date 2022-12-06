@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Diferencial  
+Funcion: griewank
 MEJOR COSTE: 109.56346566106775
 MEJOR CROMOSOMA:
 - cromosoma[0] = -285.47057024693686

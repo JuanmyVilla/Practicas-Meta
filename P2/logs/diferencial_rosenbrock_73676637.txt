@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Diferencial  
+Funcion: rosenbrock
 MEJOR COSTE: 5858.076544935146
 MEJOR CROMOSOMA:
 - cromosoma[0] = -0.7400821369224895
@@ -11,5 +12,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 2.7480944014416258
 - cromosoma[8] = 2.639175572462372
 - cromosoma[9] = 7.122636042891256
-Tiempo de Ejecucion: 6 ms
+Tiempo de Ejecucion: 8 ms
 

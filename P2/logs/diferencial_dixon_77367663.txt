@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Diferencial  
+Funcion: dixon
 MEJOR COSTE: 2.7478704153123236E8
 MEJOR CROMOSOMA:
 - cromosoma[0] = -84.91552354530512
@@ -11,5 +12,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = -5.616922389193514
 - cromosoma[8] = 4.297768510274258
 - cromosoma[9] = 34.42303260347465
-Tiempo de Ejecucion: 6 ms
+Tiempo de Ejecucion: 7 ms
 

@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Diferencial  
+Funcion: ackley
 MEJOR COSTE: 20.0350539450482
 MEJOR CROMOSOMA:
 - cromosoma[0] = -29598.03629981742
@@ -11,5 +12,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = -23582.943776487184
 - cromosoma[8] = 32768.0
 - cromosoma[9] = 1708.0000000001323
-Tiempo de Ejecucion: 12 ms
+Tiempo de Ejecucion: 13 ms
 

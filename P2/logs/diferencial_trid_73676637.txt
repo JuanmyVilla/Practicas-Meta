@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Diferencial  
+Funcion: trid
 MEJOR COSTE: 215088.46655128172
 MEJOR CROMOSOMA:
 - cromosoma[0] = 20.658500552005474

@@ -1,4 +1,5 @@
 INICIO EJECUCION: Algoritmo Diferencial  
+Funcion: schewefel
 MEJOR COSTE: 1248.0969589065953
 MEJOR CROMOSOMA:
 - cromosoma[0] = 402.062255859375
@@ -11,5 +12,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 422.0257632341312
 - cromosoma[8] = -500.0
 - cromosoma[9] = -302.5237528133501
-Tiempo de Ejecucion: 10 ms
+Tiempo de Ejecucion: 13 ms
 
