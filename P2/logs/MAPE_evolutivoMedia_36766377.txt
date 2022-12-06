@@ -1,16 +1,16 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
  - Cruce usado : MEDIA
-MEJOR COSTE: 19688.924510569756
+MEJOR COSTE: 14703.118364385287
 MEJOR CROMOSOMA:
-- cromosoma[0] = 0.6371439695358276
-- cromosoma[1] = -0.03346437215805054
-- cromosoma[2] = 0.24779987335205078
-- cromosoma[3] = -0.30952054262161255
-- cromosoma[4] = 0.19447484612464905
-- cromosoma[5] = 0.7832022309303284
-- cromosoma[6] = 0.22371211647987366
-- cromosoma[7] = 0.7083297967910767
-- cromosoma[8] = -0.7414543032646179
-- cromosoma[9] = -0.2138926386833191
-Tiempo de Ejecucion: 1376 ms
+- cromosoma[0] = -0.8557109832763672
+- cromosoma[1] = 0.01164102554321289
+- cromosoma[2] = -0.9532299637794495
+- cromosoma[3] = 0.2625635862350464
+- cromosoma[4] = 0.15445101261138916
+- cromosoma[5] = 0.5636337995529175
+- cromosoma[6] = -0.008256494998931885
+- cromosoma[7] = 0.8777574300765991
+- cromosoma[8] = -0.6591472625732422
+- cromosoma[9] = 0.1452997922897339
+Tiempo de Ejecucion: 1056 ms
 

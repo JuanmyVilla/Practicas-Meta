@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 public class AlgoritmoEvolutivo {
     private final Randon_Clase02_Grupo06 rand;
     private StringBuilder log;
@@ -42,7 +44,7 @@ public class AlgoritmoEvolutivo {
                 int aleatorio2 = rand.Randint(0, poblacion - 1);
                 if (aleatorio != aleatorio2) {
                     Cromosoma cruzado;
-                    if (selectorCruce == "MEDIA") {
+                    if (selectorCruce.equals("MEDIA")) {
                         cruzado = new Cromosoma(cruceMedia(ganadoresTorneo[aleatorio], ganadoresTorneo[aleatorio2], dimension, funcion, probabilidadCruce, marcados, nuevosHijos));
                     } else {
                         cruzado = new Cromosoma(cruceBlx(ganadoresTorneo[aleatorio], ganadoresTorneo[aleatorio2], dimension, funcion, valorMin, valorMax, alfa, probabilidadCruce, marcados, nuevosHijos));

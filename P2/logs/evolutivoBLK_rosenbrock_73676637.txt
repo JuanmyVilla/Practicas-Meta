@@ -12,5 +12,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 2.3656301498413086
 - cromosoma[8] = 2.9778895378112793
 - cromosoma[9] = 7.139040470123291
-Tiempo de Ejecucion: 4 ms
+Tiempo de Ejecucion: 2 ms
 
