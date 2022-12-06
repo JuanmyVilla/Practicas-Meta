@@ -117,12 +117,7 @@ public class AlgoritmoEvolutivo {
 
     int torneo(Cromosoma[] cromosomas, int tamTorneo, int poblacion, String selector) {
         Cromosoma[] torneoCromosomas = new Cromosoma[tamTorneo];
-//        int[] vector = new int[poblacion];
-//        for (int i = 0; i < poblacion; i++) {
-//            vector[i] = i;
-//        }
         int[] elegidos = new int[tamTorneo];
-        // for (int i = 0; i < tamTorneo; i++) {
         int tam = 0;
         while (tam < tamTorneo) {
             int aleatorio1 = rand.Randint(0, poblacion - 1);
@@ -131,7 +126,6 @@ public class AlgoritmoEvolutivo {
                 tam++;
             }
         }
-
         for (int i = 0; i < tamTorneo; i++) {
             torneoCromosomas[i] = new Cromosoma(cromosomas[elegidos[i]]);
         }
@@ -141,7 +135,6 @@ public class AlgoritmoEvolutivo {
         } else {
             ele = peorCromosoma(torneoCromosomas, tamTorneo);
         }
-
         return ele;
     }
 

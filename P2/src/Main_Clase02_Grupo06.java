@@ -19,7 +19,7 @@ public class Main_Clase02_Grupo06 {
                                 System.out.println(algoritmoEvolutivoMedia.getLog());
                                 createLog(fichero, algoritmoEvolutivoMedia.getLog());
                                 break;
-                            case "evolutivoBLK":
+                            case "evolutivoBLX":
                                 AlgoritmoEvolutivo algoritmoEvolutivo = new AlgoritmoEvolutivo(config.getSemillas().get(k));
                                 algoritmoEvolutivo.Evolutivo(config.getEvaluaciones(), config.getPoblacion(), config.getProbabilidadcruce(), config.getProbabilidadmutacion(), config.getDimension(), config.getTamanotorneo(), config.getMinimos(), config.getMaximos(), config.getFuncion().get(j), config.getSelectorcruce().get(1), config.getAlfa(), config.getSelectorMAPE().get(l), datos.getMatriz());
                                 System.out.println(algoritmoEvolutivo.getLog());
