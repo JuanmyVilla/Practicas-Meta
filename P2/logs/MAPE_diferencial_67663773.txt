@@ -1,6 +1,6 @@
 INICIO EJECUCION: Algoritmo Diferencial  
 Funcion: MAPE
-MEJOR COSTE: 3.5091795768463383
+ERROR OBTENIDO: 3.5091795768463383
 MEJOR CROMOSOMA:
 - cromosoma[0] = -0.43525053889089593
 - cromosoma[1] = 0.478601023029446
@@ -12,5 +12,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 0.4885840563035364
 - cromosoma[8] = -0.1345152868167678
 - cromosoma[9] = 0.7008436660981291
-Tiempo de Ejecucion: 1154 ms
+Tiempo de Ejecucion: 1168 ms
 

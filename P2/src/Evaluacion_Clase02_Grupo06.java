@@ -159,7 +159,7 @@ public class Evaluacion_Clase02_Grupo06 {
 
     double Potencia(double[] a, ArrayList<double[]> observaciones, String tipoError) {
         double r;
-        ArrayList<Double> real=new ArrayList<>();
+        ArrayList<Double> real = new ArrayList<>();
         ArrayList<Double> estimado = new ArrayList<>();
 
         int filas = observaciones.size();

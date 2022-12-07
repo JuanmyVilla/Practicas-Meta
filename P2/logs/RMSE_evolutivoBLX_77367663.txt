@@ -1,7 +1,7 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
 Funcion: RMSE
  - Cruce usado : BLX
-MEJOR COSTE: 281.10496293144905
+ERROR OBTENIDO: 281.10496293144905
 MEJOR CROMOSOMA:
 - cromosoma[0] = -0.675199031829834
 - cromosoma[1] = 0.3387174606323242
@@ -13,5 +13,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 0.08248680830001831
 - cromosoma[8] = -0.7106556296348572
 - cromosoma[9] = 0.4109884202480316
-Tiempo de Ejecucion: 1137 ms
+Tiempo de Ejecucion: 1154 ms
 

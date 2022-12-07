@@ -101,8 +101,8 @@ public class Configurador_Clase02_Grupo06 {
         }
     }
 
-    public void leefuncion(int i){
-        String concatena = rutaficheros + funcion.get(i)+".txt";
+    public void leefuncion(int i) {
+        String concatena = rutaficheros + funcion.get(i) + ".txt";
         String linea;
         FileReader f = null;
         try {

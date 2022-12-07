@@ -1,7 +1,7 @@
 INICIO EJECUCION: Algoritmo Evolutivo  
 Funcion: MAPE
  - Cruce usado : MEDIA
-MEJOR COSTE: 2.482340902957271
+ERROR OBTENIDO: 2.482340902957271
 MEJOR CROMOSOMA:
 - cromosoma[0] = 0.07090139389038086
 - cromosoma[1] = 0.8078581094741821
@@ -13,5 +13,5 @@ MEJOR CROMOSOMA:
 - cromosoma[7] = 0.1312805414199829
 - cromosoma[8] = -0.0047789812088012695
 - cromosoma[9] = 0.7898012399673462
-Tiempo de Ejecucion: 1233 ms
+Tiempo de Ejecucion: 1171 ms
 
