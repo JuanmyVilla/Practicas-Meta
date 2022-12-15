@@ -1,8 +1,0 @@
-dimension=10
-k=3
-iteraciones=1000
-probabilidad=0.3
-porcentajealeatorio=0.1
-funcion=ackley,griewank,rastringin,schewefel,perm,rotated,rosenbrock,michalewicz,trid,dixon
-semilla=1234567
-algoritmos=bl3
